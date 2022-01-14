@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+</head>
+<body>
+
+<!-- controller st-->
+<div class="container">
+    <div class="contents">
+        <div class="join-form">
+            <div class="join-title">
+                <h1>회원가입</h1>
+            </div>
+
+            <!--thymeleaf-->
+            <!--method="post" = postmaping-->
+            <form action="" th:action="@{~/members/join}" method="post">
+                <div class="join-item">
+                    <span>아이디 : </span>
+                    <input type="text" name="loginId" placeholder="id" >
+                </div>
+                <div class="join-item">
+                    <span>비밀번호 : </span>
+                    <input type="password" name="loginPw" placeholder="loginPw" >
+                </div>
+                <div class="join-item">
+                    <span>이름 : </span>
+                    <input type="text" name="name" placeholder="name" >
+                </div>
+                <div class="join-item">
+                    <span>닉네임 : </span>
+                    <input type="text" name="nickname" placeholder="nickname" >
+                </div>
+                <div class="join-item">
+                    <span>이메일: </span>
+                    <input type="email" name="email" placeholder="email" >
+                </div>
+
+                <div class="join-item">
+                    <button>회원가입</button>
+                    <a href="/">
+                        <button>돌아가기</button>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- controller end-->
+
+</body>
+</html>
