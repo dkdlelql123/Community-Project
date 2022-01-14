@@ -11,9 +11,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
+@Transactional(readOnly = true)
 public class MemberService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
@@ -45,6 +47,7 @@ public class MemberService implements UserDetailsService {
      * @param memberSaveForm
      */
 
+    @Transactional
     public void save(MemberSaveForm memberSaveForm) throws IllegalStateException{
 
         isDuplicateMember(
