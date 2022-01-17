@@ -1,5 +1,6 @@
 package com.nyj.diet.controller;
 
+import com.nyj.diet.dto.MemberLoginForm;
 import com.nyj.diet.dto.MemberSaveForm;
 import com.nyj.diet.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -21,13 +22,12 @@ public class MemberController {
 
         model.addAttribute("memberSaveForm", new MemberSaveForm());
         return "usr/member/join";
-
     }
 
+    // Validated 유효성 검사 - 리다이랙트
+    // Validated - 꼭 같이 사용해야함함 bindingesult
     @PostMapping("/members/join")
     public String doJoin(@Validated MemberSaveForm memberSaveForm, BindingResult bindingResult, Model model){
-//        Validated 유효성 검사 - 리다이랙트
-//        Validated - 꼭 같이 사용해야함함 bindingesult
 
         //에러값이 들어온다면 다시 회원가입 창을 보여줄거다
         if ( bindingResult.hasErrors() ) {
@@ -46,15 +46,16 @@ public class MemberController {
 
         //로그인이 성공되었을때 이동하는 페이지
         return "redirect:/";
-
     }
+
 
     // 로그인
     @GetMapping("/members/login")
     public String showLogin(Model model){
 
-        model.addAttribute("memberLoginForm", new MemberSaveForm() );
+        model.addAttribute("memberLoginForm", new MemberLoginForm());
+
         return "usr/member/login";
     }
-    
+
 }
