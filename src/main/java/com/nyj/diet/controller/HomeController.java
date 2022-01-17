@@ -1,0 +1,13 @@
+package com.nyj.diet.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class HomeController {
+
+    @GetMapping("/")
+    public String showIndex(){
+        return "index"; //주소를 뱉는다.
+    }
+}

@@ -29,11 +29,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests( authorize -> authorize
 
                         .mvcMatchers(
-                                "/members/join"
+                                "/members/join",
+                                "/members/login"
                         )
                         .anonymous()
                         .mvcMatchers(
-                                "/articles/**"
+                                "/articles/**",
+                                "/"
                         )
                         .permitAll()
                         .mvcMatchers(
@@ -45,19 +47,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 )
 
                 .formLogin()
-                .loginPage("/members/login")
-                .loginProcessingUrl("/doLogin")
-                .usernameParameter("loginId")
-                .passwordParameter("loginPw")
-                .defaultSuccessUrl("/")
-                .and()
+                    .loginPage("/members/login")
+                    .loginProcessingUrl("/members/doLogin")
+                    .usernameParameter("loginId")
+                    .passwordParameter("loginPw")
+                    .defaultSuccessUrl("/")
+            .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .clearAuthentication(true)
-                .and()
+            .and()
                 .sessionManagement()
                 .invalidSessionUrl("/")
                 .maximumSessions(1)
