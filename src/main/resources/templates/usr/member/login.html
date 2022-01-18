@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
 <head>
     <meta charset="UTF-8">
     <title>로그인</title>
@@ -21,8 +22,10 @@
 
                 <div class="form-item">
                     <button>로그인</button>
+                    <a href="/">
+                        <button>돌아가기</button>
+                    </a>
                 </div>
-
             </form>
         </div>
     </div>
