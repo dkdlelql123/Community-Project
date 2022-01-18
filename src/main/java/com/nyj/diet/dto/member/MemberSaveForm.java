@@ -1,4 +1,4 @@
-package com.nyj.diet.dto;
+package com.nyj.diet.dto.member;
 
 import lombok.Data;
 

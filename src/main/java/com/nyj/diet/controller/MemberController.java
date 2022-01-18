@@ -1,7 +1,7 @@
 package com.nyj.diet.controller;
 
-import com.nyj.diet.dto.MemberLoginForm;
-import com.nyj.diet.dto.MemberSaveForm;
+import com.nyj.diet.dto.member.MemberLoginForm;
+import com.nyj.diet.dto.member.MemberSaveForm;
 import com.nyj.diet.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

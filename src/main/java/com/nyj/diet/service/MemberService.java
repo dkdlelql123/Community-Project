@@ -1,10 +1,9 @@
 package com.nyj.diet.service;
 
-import com.fasterxml.classmate.MemberResolver;
 import com.nyj.diet.config.Role;
 import com.nyj.diet.dao.MemberRepository;
 import com.nyj.diet.domain.Member;
-import com.nyj.diet.dto.MemberSaveForm;
+import com.nyj.diet.dto.member.MemberSaveForm;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,6 +11,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -68,6 +69,17 @@ public class MemberService implements UserDetailsService {
         );
 
         memberRepository.save(member);
+    }
+
+    public Member findByLoginId(String loginId) throws IllegalStateException{
+        Optional<Member> memberOptional = memberRepository.findByLoginId(loginId);
+
+        // orElseThrow - 존재하지 않은 회원일때 대처하기 위해
+        memberOptional.orElseThrow(
+                () -> new IllegalStateException("존재하지 않는 회원입니다.")
+        );
+
+        return memberOptional.get();
     }
 
 }

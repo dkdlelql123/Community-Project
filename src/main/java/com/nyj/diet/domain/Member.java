@@ -3,6 +3,7 @@ package com.nyj.diet.domain;
 import com.nyj.diet.config.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,18 +19,21 @@ import java.util.List;
 
 public class Member implements UserDetails {
 
+    //DB의 PK에 연결할 id를 만들어준다,
+    @Id
+    @Column(name = "member_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String loginId;
     private String loginPw;
-
-    //그 다음 Member로 받을 나머지 값들을 넣어준다.
+ 
     private String name;
     private String nickname;
     private String email;
-
-    //DB의 PK에 연결할 id를 만들어준다,
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    
+    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE) // 연속성
+    private List<Article> articles = new ArrayList<>(); // article 연결
 
     @Enumerated(EnumType.STRING)
     private Role authority;
@@ -38,6 +42,7 @@ public class Member implements UserDetails {
     private boolean isAccountNonLocked = true;
     private boolean isCredentialsNonExpired = true;
     private boolean isEnabled = true;
+
 
     public static Member createMember(String loginId, String loginPw, String name, String nickname, String email, Role authority) {
 
@@ -57,14 +62,6 @@ public class Member implements UserDetails {
 
 
     @Override
-//    public Collection getAuthorities() {
-//
-//        List authorities = new ArrayList<>();
-//        authorities.add(new SimpleGrantedAuthority(this.authority.getValue()));
-//
-//        return authorities;
-//    }
-
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
         List<GrantedAuthority> authorities = new ArrayList<>();
