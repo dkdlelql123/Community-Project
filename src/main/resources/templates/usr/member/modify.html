@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>회원정보 수정</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+  <div class="container mt-24">
+    <div class="contents">
+
+      <!--thymeleaf-->
+      <!--method="post" = postmaping-->
+      <form action="" th:action="@{~/members/modify}" th:object="${memberModifyForm}" method="post">
+
+        <div id="formContainer"
+             class="flex flex-col gap-4 w-full px-4 mx-auto lg:w-1/2 lg:px-0">
+          <div class="join-item">
+            <span class="hidden">아이디 : </span>
+            <input type="text" name="loginId" placeholder="id" th:value="${member.loginId}"
+                   class="bg-gray-100 w-full rounded-full px-4 py-2" readonly required>
+          </div>
+          <div class="join-item">
+            <span class="hidden">비밀번호 : </span>
+            <input type="password" name="loginPw"
+                   placeholder="loginPw"
+                   class="bg-gray-100 w-full rounded-full px-4 py-2">
+          </div>
+          <div class="join-item">
+            <span class="hidden">이름 : </span>
+            <input type="text" name="name" placeholder="name"  th:value="${member.name}"
+                   class="bg-gray-100 w-full rounded-full px-4 py-2" readonly required>
+          </div>
+          <div class="join-item">
+            <span class="hidden">닉네임 : </span>
+            <input type="text" name="nickname"
+                   placeholder="nickname"  th:value="${member.nickname}"
+                   class="bg-gray-100 w-full rounded-full px-4 py-2" required>
+          </div>
+          <div class="join-item">
+            <span class="hidden">이메일: </span>
+            <input type="email" name="email"
+                   placeholder="email"  th:value="${member.email}"
+                   class="bg-gray-100 w-full rounded-full px-4 py-2" required>
+          </div>
+
+          <div class="flex align-center flex-row-reverse gap-4">
+            <button class="flex-1 rounded-full bg-gray-900 hover:bg-gray-800 text-center text-white py-2">
+              수정
+            </button>
+            <a href="/"
+               class="flex-1 rounded-full bg-gray-400 hover:bg-gray-300 text-center text-white py-2">
+              <button>메인으로</button>
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

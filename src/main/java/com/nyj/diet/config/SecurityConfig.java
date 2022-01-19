@@ -14,7 +14,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 @AllArgsConstructor
-
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -33,7 +32,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .anonymous()
                         .mvcMatchers(
                                 "/articles/**",
-                                "/"
+                                "/",
+                                "/members/modify"
                         )
                         .permitAll()
                         .mvcMatchers(

@@ -17,21 +17,18 @@ public class ArticleService {
     private final ArticleRepository articleRepository;
 
     // 게시물 저장 로직
-    public void save(ArticleSaveForm articleSaveForm, Member member){
+    public void save(ArticleSaveForm articleSaveForm, Member member) {
 
         // 게시물 만듬
         Article article = Article.createArticle(
                 articleSaveForm.getTitle(),
                 articleSaveForm.getBody()
         );
-        
+
         // 게시물 멤버 추가
         article.setMember(member);
-        
+
         // db 추가
         articleRepository.save(article);
-
     }
-    
-
 }

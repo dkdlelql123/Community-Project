@@ -3,6 +3,7 @@ package com.nyj.diet.service;
 import com.nyj.diet.config.Role;
 import com.nyj.diet.dao.MemberRepository;
 import com.nyj.diet.domain.Member;
+import com.nyj.diet.dto.member.MemberModifyForm;
 import com.nyj.diet.dto.member.MemberSaveForm;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -80,6 +81,26 @@ public class MemberService implements UserDetailsService {
         );
 
         return memberOptional.get();
+    }
+    
+    //회원정보수정
+    //변경이니 transactional
+    @Transactional
+    public Long modifyMember(MemberModifyForm memberModifyForm, String loginId){
+        
+        Member findMember = findByLoginId(loginId);
+        
+        // 암호화
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        
+        findMember.modifyMember(
+                bCryptPasswordEncoder.encode(memberModifyForm.getLoginPw()),
+                memberModifyForm.getNickname(),
+                memberModifyForm.getEmail()
+        );
+        
+        return findMember.getId();
+
     }
 
 }
