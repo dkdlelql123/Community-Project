@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
 <head>
@@ -7,27 +7,45 @@
     <title>로그인</title>
 </head>
 <body>
-    <div class="container">
+
+<div layout:fragment="content">
+    <div class="container mt-24">
         <div class="contents">
-            <form action="" th:action="@{~/members/doLogin}" th:object="${memberLoginForm}" method="POST">
-                <div class="form-item">
-                    <span>아이디</span>
-                    <input type="text" name="loginId">
-                </div>
+            <form action="" th:action="@{~/members/doLogin}"
+                  th:object="${memberLoginForm}" method="POST">
+                <div id="formContainer"
+                     class="flex flex-col gap-4 w-full px-4 mx-auto lg:w-1/2 lg:px-0">
+                    <h1 class="text-center text-4xl font-bold mb-12">Login</h1>
+                    <div class="form-item">
+                        <span class="hidden">아이디</span>
+                        <input type="text" name="loginId" autocomplete="false"
+                               placeholder="아이디를 입력해주세요."
+                               class="bg-gray-100 w-full rounded-full px-4 py-2"
+                        >
+                    </div>
 
-                <div class="form-item">
-                    <span>비밀번호</span>
-                    <input type="password" name="loginPw">
-                </div>
+                    <div class="form-item">
+                        <span class="hidden">비밀번호</span>
+                        <input type="password" name="loginPw"
+                               autocomplete="false" placeholder="비밀번호를 입력해주세요."
+                               class="bg-gray-100 w-full rounded-full px-4 py-2"
+                        >
+                    </div>
 
-                <div class="form-item">
-                    <button>로그인</button>
-                    <a href="/">
-                        <button>돌아가기</button>
-                    </a>
+                    <div class="flex align-center flex-row-reverse gap-4">
+                        <button class="flex-1 rounded-full bg-gray-900 hover:bg-gray-800 text-center text-white py-2">
+                            로그인
+                        </button>
+                        <a href="/"
+                           class="flex-1 rounded-full bg-gray-400 hover:bg-gray-300 text-center text-white py-2">
+                            <button>메인으로</button>
+                        </a>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
+</div>
+
 </body>
 </html>

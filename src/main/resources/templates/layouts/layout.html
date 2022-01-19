@@ -3,16 +3,24 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8">
-
     <script src="https://cdn.tailwindcss.com/"></script>
-
-    <link rel="stylesheet" href="/css/common.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/css/common.css"/>
 </head>
-<body>
+<body class="flex justify-center">
+
+<div
+     class="flex flex-col flex-1 bg-white min-h-screen items-stretch"
+     style="max-width:800px !important"
+>
+
     <!-- header fragment -->
     <header th:replace="fragments/header :: headerFragment"></header>
 
-    <div layout:fragment="content"> </div>
+    <!-- layout -->
+    <div layout:fragment="content"></div>
+
+</div>
 
 </body>
 </html>

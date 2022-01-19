@@ -9,4 +9,11 @@
 
 body{
     font-family: 'Pretendard-Regular';
+    color: rgba(31, 41, 55);
+    text-underline-position: under;
+    background:f1f1f1;
+}
+
+input, button, label, a {
+    outline:none;
 }
