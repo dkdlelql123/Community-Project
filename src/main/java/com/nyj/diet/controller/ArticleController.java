@@ -22,24 +22,24 @@ public class ArticleController {
     private final MemberService memberService;
 
     @GetMapping("/articles/write")
-    public String showWrite(Model model){
+    public String showArticleWrite(Model model) {
 
         model.addAttribute("articleSaveForm", new ArticleSaveForm());
 
         return "usr/article/write";
+
     }
 
     // model이 프론트 단으로 넘겨주는 역할
     @PostMapping("/articles/write")
-    public String doWrite(@Validated ArticleSaveForm articleSaveForm, BindingResult bindingResult, Model model, Principal principal){
+    public String doWrite(@Validated ArticleSaveForm articleSaveForm, BindingResult bindingResult, Model model, Principal principal) {
 
-        if(bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "usr/article/write";
         }
 
         try {
 
-            // principal 멤버를 받음
             Member findMember = memberService.findByLoginId(principal.getName());
 
             articleService.save(
@@ -47,14 +47,16 @@ public class ArticleController {
                     findMember
             );
 
-        } catch (IllegalStateException e){
+        } catch (IllegalStateException e) {
 
-            model.addAttribute("err_msg",e.getMessage());
+            model.addAttribute("err_msg", e.getMessage());
 
             return "usr/article/write";
 
         }
 
         return "redirect:/";
+
     }
+
 }

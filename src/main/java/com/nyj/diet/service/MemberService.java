@@ -73,11 +73,11 @@ public class MemberService implements UserDetailsService {
     }
 
     public Member findByLoginId(String loginId) throws IllegalStateException{
+
         Optional<Member> memberOptional = memberRepository.findByLoginId(loginId);
 
-        // orElseThrow - 존재하지 않은 회원일때 대처하기 위해
         memberOptional.orElseThrow(
-                () -> new IllegalStateException("존재하지 않는 회원입니다.")
+                () -> new IllegalStateException("존재하지 않는 회원입니다")
         );
 
         return memberOptional.get();

@@ -17,14 +17,14 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().mvcMatchers("/css/**", "/js/**","/img/**","/error/**","/lib/**");
+        web.ignoring().mvcMatchers("/css/**", "/js/**", "/img/**", "/error/**", "/lib/**");
     }
 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.authorizeRequests( authorize -> authorize
+        http.authorizeRequests(authorize -> authorize
                         .mvcMatchers(
                                 "/members/join",
                                 "/members/login"
@@ -45,19 +45,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 )
 
                 .formLogin()
-                    .loginPage("/members/login")
-                    .loginProcessingUrl("/members/doLogin")
-                    .usernameParameter("loginId")
-                    .passwordParameter("loginPw")
-                    .defaultSuccessUrl("/")
-            .and()
+                .loginPage("/members/login")
+                .loginProcessingUrl("/members/doLogin")
+                .usernameParameter("loginId")
+                .passwordParameter("loginPw")
+                .defaultSuccessUrl("/")
+                .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
                 .logoutSuccessUrl("/")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
                 .clearAuthentication(true)
-            .and()
+                .and()
                 .sessionManagement()
                 .invalidSessionUrl("/")
                 .maximumSessions(1)
@@ -66,7 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

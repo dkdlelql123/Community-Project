@@ -31,17 +31,17 @@ public class MemberController {
     // Validated 유효성 검사 - 리다이랙트
     // Validated - 꼭 같이 사용해야함함 bindingesult
     @PostMapping("/members/join")
-    public String doJoin(@Validated MemberSaveForm memberSaveForm, BindingResult bindingResult, Model model){
+    public String doJoin(@Validated MemberSaveForm memberSaveForm, BindingResult bindingResult, Model model) {
 
         //에러값이 들어온다면 다시 회원가입 창을 보여줄거다
-        if ( bindingResult.hasErrors() ) {
+        if (bindingResult.hasErrors()) {
             return "usr/member/join";
         }
 
-        try{
+        try {
             // 저장
             memberService.save(memberSaveForm);
-        } catch (Exception e){
+        } catch (Exception e) {
             // 원치 않은 상황시 - memberservice에서 메세지를 불러와 줌
             model.addAttribute("err_msg", e.getMessage());
 
@@ -55,7 +55,7 @@ public class MemberController {
 
     // 로그인
     @GetMapping("/members/login")
-    public String showLogin(Model model){
+    public String showLogin(Model model) {
 
         model.addAttribute("memberLoginForm", new MemberLoginForm());
 
@@ -64,7 +64,7 @@ public class MemberController {
 
     // 회원정보 수정
     @GetMapping("/members/modify")
-    public String showModify(Model model, Principal principal){
+    public String showModify(Model model, Principal principal) {
         Member findMember = memberService.findByLoginId(principal.getName());
 
         model.addAttribute("member", findMember); // 수정 전 데이터 뿌려주기
@@ -75,13 +75,13 @@ public class MemberController {
     }
 
     @PostMapping("/members/modify")
-    public String doModify(MemberModifyForm memberModifyForm, Model model, Principal principal){
+    public String doModify(MemberModifyForm memberModifyForm, Model model, Principal principal) {
 
-        try{
+        try {
 
             memberService.modifyMember(memberModifyForm, principal.getName());
 
-        } catch(Exception e){
+        } catch (Exception e) {
 
             model.addAttribute("err_msg", e.getMessage());
 

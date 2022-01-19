@@ -17,7 +17,6 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor
-
 public class Member implements UserDetails {
 
     //DB의 PK에 연결할 id를 만들어준다,
@@ -28,16 +27,16 @@ public class Member implements UserDetails {
 
     private String loginId;
     private String loginPw;
- 
+
     private String name;
     private String nickname;
     private String email;
 
     private LocalDateTime regDate = LocalDateTime.now();
     private LocalDateTime updateDate = LocalDateTime.now();
-    
-    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE) // 연속성
-    private List<Article> articles = new ArrayList<>(); // article 연결
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
+    private List<Article> articles = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private Role authority;
@@ -64,14 +63,13 @@ public class Member implements UserDetails {
         return member;
     }
 
-    public void modifyMember(String loginPw, String nickname, String email){
+    public void modifyMember(String loginPw, String nickname, String email) {
 
         this.loginPw = loginPw;
         this.nickname = nickname;
         this.email = email;
 
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

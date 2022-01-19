@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
 </head>
-
 <header th:fragment="headerFragment">
     <div class="header border-b border-gray-100 p-4">
         <nav class="flex align-center justify-between">
@@ -16,10 +15,8 @@
             </ul>
 
             <ul class="flex items-center">
-                <li sec:authorize="isAnonymous"
-                    class="space-x-2 > *"
-                >
-                    <a th:href="@{~/members/login}">로그인</a>
+                <li sec:authorize="isAnonymous()" class="space-x-2 > *">
+                    <a class="mr-4" th:href="@{~/members/login}">로그인</a>
                     <a th:href="@{~/members/join}">회원가입</a>
                 </li>
 
@@ -28,23 +25,26 @@
                     <!-- principal username 불러오기  -->
                     <button id="dropdownInformationButton"
                             data-dropdown-toggle="dropdownInformation"
-                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                            type="button" sec:authentication="principal.loginId">
-                            loginId
-                            <svg class="ml-2 w-4 h-4" fill="none"
-                                 stroke="currentColor" viewBox="0 0 24 24"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                      stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
+                            class="text-sm text-center inline-flex"
+                            type="button"
+                            sec:authentication="principal.loginId">
+                        loginId
+                        <svg class="ml-2 w-4 h-4" fill="none"
+                             stroke="currentColor" viewBox="0 0 24 24"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
                     </button>
 
                     <!-- Dropdown menu -->
                     <div id="dropdownInformation"
                          class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                        <div class="py-3 px-4 text-gray-900 dark:text-white" >
-                            <span class="block text-sm" sec:authentication="principal.username">name</span>
-                            <span class="block text-sm font-medium truncat" sec:authentication="principal.email">exam@aaa.com</span>
+                        <div class="py-3 px-4 text-gray-900 dark:text-white">
+                            <span class="block text-sm"
+                                  sec:authentication="principal.name">name</span>
+                            <span class="block text-sm font-medium"
+                                  sec:authentication="principal.email">exam@aaa.com</span>
                         </div>
                         <ul class="py-1"
                             aria-labelledby="dropdownInformationButton">
@@ -53,8 +53,9 @@
                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">내정보수정</a>
                             </li>
                             <li>
-                                <a href="/articles/write/"
-                                   class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">게시글 작성하기</a>
+                                <a href="/articles/write"
+                                   class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">게시글
+                                    작성하기</a>
                             </li>
                         </ul>
                         <div class="py-1">

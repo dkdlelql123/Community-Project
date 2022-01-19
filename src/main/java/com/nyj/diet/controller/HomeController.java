@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomeController {
 
     @GetMapping("/")
-    public String showIndex(){
+    public String showIndex() {
         return "index"; //주소를 뱉는다.
     }
 }
