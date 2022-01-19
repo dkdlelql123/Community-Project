@@ -17,9 +17,9 @@ public class ArticleService {
     private final ArticleRepository articleRepository;
 
     // 게시물 저장 로직
+    @Transactional
     public void save(ArticleSaveForm articleSaveForm, Member member) {
 
-        // 게시물 만듬
         Article article = Article.createArticle(
                 articleSaveForm.getTitle(),
                 articleSaveForm.getBody()
@@ -30,5 +30,6 @@ public class ArticleService {
 
         // db 추가
         articleRepository.save(article);
+
     }
 }
