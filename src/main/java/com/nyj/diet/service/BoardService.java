@@ -4,6 +4,7 @@ import com.nyj.diet.dao.BoardRepository;
 import com.nyj.diet.domain.Article;
 import com.nyj.diet.domain.Board;
 import com.nyj.diet.dto.Board.BoardDTO;
+import com.nyj.diet.dto.Board.BoardModifyForm;
 import com.nyj.diet.dto.Board.BoardSaveForm;
 import com.nyj.diet.dto.article.ArticleListDTO;
 import lombok.RequiredArgsConstructor;
@@ -63,7 +64,24 @@ public class BoardService {
         return new BoardDTO(findBoard, articleList);
     }
 
+    @Transactional
+    public Long modify(BoardModifyForm boardModifyForm) throws NoSuchElementException{
 
+        Optional<Board> boardOptional = boardRepository.findByName(boardModifyForm.getName());
+
+        boardOptional.orElseThrow(
+                () -> new NoSuchElementException("해당 게시판은 존재하지 않습니다.")
+        );
+
+        Board board = boardOptional.get();
+        board.modifyBoard(
+                boardModifyForm.getName(),
+                boardModifyForm.getDetail()
+        );
+
+        return board.getId();
+
+    }
 
 
 
