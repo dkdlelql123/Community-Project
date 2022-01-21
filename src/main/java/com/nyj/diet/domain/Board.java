@@ -1,11 +1,14 @@
 package com.nyj.diet.domain;
 
+import lombok.Getter;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
 public class Board {
     @Id
     @Column(name = "board_id")

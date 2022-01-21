@@ -1,6 +1,7 @@
 package com.nyj.diet.domain;
 
 import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 //db table 1:1연결
 //무분별한 객체 생성을 막기 위해? AccessLevel.PROTECTED
 @Entity
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Article {
 

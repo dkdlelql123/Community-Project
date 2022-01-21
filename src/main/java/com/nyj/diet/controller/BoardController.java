@@ -1,12 +1,14 @@
 package com.nyj.diet.controller;
 
 import com.nyj.diet.domain.Board;
+import com.nyj.diet.dto.Board.BoardDTO;
 import com.nyj.diet.dto.Board.BoardSaveForm;
 import com.nyj.diet.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
@@ -42,6 +44,20 @@ public class BoardController {
         return "/usr/board/list";
     }
 
+    // 상세
+    @GetMapping("/boards/{id}")
+    public String showBoardDetail(@PathVariable(name = "id")Long id, Model model){
+
+        try{
+            BoardDTO boardDetail = boardService.getBoardDetail(id);
+            model.addAttribute("board", boardDetail);
+
+        } catch (Exception e){
+            return "redirect:/";
+        }
+
+        return "usr/board/detail";
+    }
 
 }
 
