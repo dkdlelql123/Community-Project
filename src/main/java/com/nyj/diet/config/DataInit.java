@@ -5,7 +5,7 @@ import com.nyj.diet.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 
@@ -24,7 +24,7 @@ public class DataInit {
     }
 
     @Component
-    @Service
+    @Transactional
     @RequiredArgsConstructor
     static class InitService{
         private final MemberRepository memberRepository;

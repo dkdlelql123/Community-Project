@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.lang.management.LockInfo;
 import java.util.List;
 
 @Controller
@@ -21,7 +22,7 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
 
-    // 작성하기
+    //생성
     @GetMapping("/boards/add")
     public String showAddBoard(Model model){
         model.addAttribute("boardSaveForm", new BoardSaveForm());
@@ -62,6 +63,7 @@ public class BoardController {
         return "adm/board/detail";
     }
 
+    // 수정
     @GetMapping("/boards/modify")
     public String showModifyBoard(Model model){
         model.addAttribute("boardModifyForm", new BoardModifyForm() );
@@ -79,6 +81,20 @@ public class BoardController {
         }
 
         return "redirect:/";
+    }
+
+    // 삭제
+    @GetMapping("/boards/delete/{id}")
+    public String doDeleteBoard(@PathVariable(name="id") Long id){
+
+        try{
+            boardService.delete(id);
+            return "adm/board/list";
+
+        } catch (Exception e){
+            return "adm/board/list";
+        }
+
     }
 }
 

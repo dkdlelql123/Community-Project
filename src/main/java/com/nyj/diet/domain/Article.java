@@ -25,6 +25,8 @@ public class Article {
     //여기서부터 회원 연결
     // ManyToOne ?
     // fetch = FetchType.LAZY ?
+
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
@@ -38,22 +40,22 @@ public class Article {
 
 
     // 생성 메소드
-    public static Article createArticle(String title, String body) {
+        public static Article createArticle( String title, String body ) {
 
-        Article article = new Article();
+            Article article = new Article();
 
-        article.title = title;
-        article.body = body;
+            article.title = title;
+            article.body = body;
 
-        return article;
+            return article;
 
-    }
+        }
 
-    //  연관관계 메소드
-    public void setMember(Member member) {
+        //  연관관계 메소드
+        public void setMember(Member member) {
 
-        this.member = member;
-        member.getArticles().add(this);
+            this.member = member;
+            member.getArticles().add(this);
 
-    }
+        }
 }
