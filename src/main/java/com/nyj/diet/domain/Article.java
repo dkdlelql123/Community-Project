@@ -40,22 +40,30 @@ public class Article {
 
 
     // 생성 메소드
-        public static Article createArticle( String title, String body ) {
+    public static Article createArticle( String title, String body ) {
 
-            Article article = new Article();
+        Article article = new Article();
 
-            article.title = title;
-            article.body = body;
+        article.title = title;
+        article.body = body;
 
-            return article;
+        return article;
 
-        }
+    }
 
-        //  연관관계 메소드
-        public void setMember(Member member) {
+    // 수정
+    public void modifyArticle(String title, String body ){
+        this.title = title;
+        this.body = body;
+        this.updateDate = LocalDateTime.now();
+    }
 
-            this.member = member;
-            member.getArticles().add(this);
 
-        }
+    //  연관관계 메소드
+    public void setMember(Member member) {
+
+        this.member = member;
+        member.getArticles().add(this);
+
+    }
 }
