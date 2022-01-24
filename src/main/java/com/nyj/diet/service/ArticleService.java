@@ -3,6 +3,7 @@ package com.nyj.diet.service;
 import com.nyj.diet.dao.ArticleRepository;
 import com.nyj.diet.domain.Article;
 import com.nyj.diet.domain.Member;
+import com.nyj.diet.dto.article.ArticleDTO;
 import com.nyj.diet.dto.article.ArticleModifyForm;
 import com.nyj.diet.dto.article.ArticleSaveForm;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.swing.text.html.Option;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -67,5 +69,16 @@ public class ArticleService {
         );
     }
 
+    // 리스트
+    public List<ArticleDTO> getArticleList() {
+        List<Article> articleList = articleRepository.findAll();
 
+        List<ArticleDTO> articleDTOList = new ArrayList<>();
+        for(Article article : articleList){
+           ArticleDTO articleDTO = new ArticleDTO(article);
+           articleDTOList.add(articleDTO);
+        }
+
+        return articleDTOList;
+    }
 }
