@@ -48,6 +48,16 @@ public class ArticleService {
     }
 
 
+    public ArticleDTO findArticle(Long id){
+
+        Article article = getById(id);
+
+        ArticleDTO articleDTO = new ArticleDTO(article);
+
+        return articleDTO;
+    }
+
+
     public Article getById(Long id) throws NoSuchElementException{
 
         Optional<Article> articleOptional = findById(id);
@@ -74,11 +84,19 @@ public class ArticleService {
         List<Article> articleList = articleRepository.findAll();
 
         List<ArticleDTO> articleDTOList = new ArrayList<>();
+
         for(Article article : articleList){
            ArticleDTO articleDTO = new ArticleDTO(article);
            articleDTOList.add(articleDTO);
         }
 
         return articleDTOList;
+    }
+
+    // 삭제
+    @Transactional
+    public void delete(Long id){
+        Article findArticle = getById(id);
+        articleRepository.delete(findArticle);
     }
 }

@@ -95,9 +95,30 @@ public class ArticleController {
 
     }
 
+
+    // 삭제
+    @GetMapping("/article/delete/{id}")
+    public String deleteArticle(@PathVariable(name="id") Long id, Principal principal){
+
+        try{
+            ArticleDTO articleDTO = articleService.findArticle(id);
+
+            if(articleDTO.getAuthorName() != principal.getName()){
+                return "redirect:/";
+            }
+
+            articleService.delete(id);
+            return "redirect:/";
+
+        } catch (Exception e){
+            return "redirect:/";
+        }
+    }
+
+
     // 리스트
     @GetMapping("/articles")
-    public String showArticleList(Model model){
+    public String showList(Model model){
         List<ArticleDTO> articleList = articleService.getArticleList();
 
         model.addAttribute("articleList", articleList);
