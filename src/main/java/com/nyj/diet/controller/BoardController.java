@@ -30,11 +30,13 @@ public class BoardController {
         return "adm/board/add";
     }
 
+    // 생성
     @PostMapping("/boards/add")
     public String doAddBoard(BoardSaveForm boardSaveForm){
         boardService.save(boardSaveForm);
 
-        return "redirect:/";
+        // redirect url주소로 넘겨준다.
+        return "redirect:/adm/boards";
     }
 
     // 리스트
