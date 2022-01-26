@@ -41,20 +41,17 @@ public class ArticleService {
 
     }
 
-    // 수정
-    // 1. 아이디 찾기
-    public Optional<Article> findById(Long id){
-        return articleRepository.findById(id);
-    }
-
-
-    public ArticleDTO findArticle(Long id){
-
+    public ArticleDTO getArticle(Long id) throws NoSuchElementException{
         Article article = getById(id);
 
         ArticleDTO articleDTO = new ArticleDTO(article);
 
         return articleDTO;
+    }
+
+    // 수정
+    public Optional<Article> findById(Long id){
+        return articleRepository.findById(id);
     }
 
 
@@ -93,7 +90,7 @@ public class ArticleService {
         return articleDTOList;
     }
 
-    // 삭제
+    // 삭제 - DB 영향을 끼치므로 Transactional 붙인다.
     @Transactional
     public void delete(Long id){
         Article findArticle = getById(id);
