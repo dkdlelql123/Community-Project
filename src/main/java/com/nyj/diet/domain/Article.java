@@ -66,4 +66,10 @@ public class Article {
         member.getArticles().add(this);
 
     }
+
+    // 연관관계 메소드
+    public void setBoard(Board board){
+        this.board = board;
+        board.getArticles().add(this);
+    }
 }
