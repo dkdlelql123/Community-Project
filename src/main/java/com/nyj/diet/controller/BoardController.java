@@ -91,7 +91,7 @@ public class BoardController {
 
         try {
             boardService.modify(id, boardModifyForm);
-            return "redirect:/boards";
+            return "redirect:/adm/boards";
 
         } catch (Exception e){
             return "adm/board/modify";
@@ -105,7 +105,7 @@ public class BoardController {
 
         try{
             boardService.delete(id);
-            return "adm/board/list";
+            return "redirect:/adm/boards";
 
         } catch (Exception e){
             return "adm/board/list";
