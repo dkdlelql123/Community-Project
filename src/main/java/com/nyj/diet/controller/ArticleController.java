@@ -1,11 +1,14 @@
 package com.nyj.diet.controller;
 
 import com.nyj.diet.domain.Article;
+import com.nyj.diet.domain.Board;
 import com.nyj.diet.domain.Member;
+import com.nyj.diet.dto.Board.BoardDTO;
 import com.nyj.diet.dto.article.ArticleDTO;
 import com.nyj.diet.dto.article.ArticleModifyForm;
 import com.nyj.diet.dto.article.ArticleSaveForm;
 import com.nyj.diet.service.ArticleService;
+import com.nyj.diet.service.BoardService;
 import com.nyj.diet.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -25,9 +28,13 @@ public class ArticleController {
 
     private final ArticleService articleService;
     private final MemberService memberService;
+    private final BoardService boardService;
 
-    @GetMapping("/articles/write")
-    public String showArticleWrite(Model model) {
+    @GetMapping("/boards/{id}/articles/write")
+    public String showArticleWrite(@PathVariable(name = "id") Long id, Model model) {
+
+        BoardDTO boardDetail = boardService.getBoardDetail(id);
+        model.addAttribute("board", boardDetail);
 
         model.addAttribute("articleSaveForm", new ArticleSaveForm());
 
@@ -36,8 +43,8 @@ public class ArticleController {
     }
 
     // model이 프론트 단으로 넘겨주는 역할
-    @PostMapping("/articles/write")
-    public String doWrite(@Validated ArticleSaveForm articleSaveForm, BindingResult bindingResult, Model model, Principal principal) {
+    @PostMapping("/boards/{id}/articles/write")
+    public String doWrite(@Validated ArticleSaveForm articleSaveForm, BindingResult bindingResult, Model model, Principal principal, @PathVariable(name = "id") Long id) {
 
         if (bindingResult.hasErrors()) {
             return "usr/article/write";
@@ -46,21 +53,23 @@ public class ArticleController {
         try {
 
             Member findMember = memberService.findByLoginId(principal.getName());
+            Board findBoard = boardService.getBoard(articleSaveForm.getBoard_id());
 
             articleService.save(
                     articleSaveForm,
-                    findMember
+                    findMember,
+                    findBoard
             );
 
         } catch (IllegalStateException e) {
 
             model.addAttribute("err_msg", e.getMessage());
-
-            return "usr/article/write";
+            return "usr/article/write"; //폴더
 
         }
 
-        return "redirect:/";
+        //url
+        return "redirect:/articles";
     }
 
     // 수정

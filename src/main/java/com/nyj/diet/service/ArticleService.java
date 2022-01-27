@@ -2,6 +2,7 @@ package com.nyj.diet.service;
 
 import com.nyj.diet.dao.ArticleRepository;
 import com.nyj.diet.domain.Article;
+import com.nyj.diet.domain.Board;
 import com.nyj.diet.domain.Member;
 import com.nyj.diet.dto.article.ArticleDTO;
 import com.nyj.diet.dto.article.ArticleModifyForm;
@@ -26,7 +27,7 @@ public class ArticleService {
 
     // 게시물 저장 로직
     @Transactional
-    public void save(ArticleSaveForm articleSaveForm, Member member) {
+    public void save(ArticleSaveForm articleSaveForm, Member member, Board board) {
 
         Article article = Article.createArticle(
                 articleSaveForm.getTitle(),
@@ -35,6 +36,7 @@ public class ArticleService {
 
         // 게시물 멤버 추가
         article.setMember(member);
+        article.setBoard(board);
 
         // db 추가
         articleRepository.save(article);

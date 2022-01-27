@@ -91,12 +91,12 @@ public class BoardController {
 
         try {
             boardService.modify(id, boardModifyForm);
+            return "redirect:/boards";
 
         } catch (Exception e){
             return "adm/board/modify";
         }
 
-        return "redirect:/";
     }
 
     // 삭제
