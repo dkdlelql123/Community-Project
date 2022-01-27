@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 수정</title>
+</head>
+
+<div layout:fragment="content">
+    <div class="container mt-12 mx-auto ms:w-3/4 px-4 sm::p-0">
+        <div class="bg-white rounded-lg border-none p-4 sm:p-6 lg:p-8 sha12">
+
+            <form action="" th:action="@{~/adm/boards/modify/} + ${board.id}" method="POST"
+                  class="space-y-6">
+                <h3 class="text-2xl font-bold text-gray-900 text-center sm:mt-6">
+                    게시판 수정
+                </h3>
+
+                <div class="form-item">
+                    <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">게시판 이름</span>
+                    <input name="name" type="text"
+                           class="bg-gray-100 w-full rounded-md px-4 py-2 border-none"
+                           th:value="${board.name}"
+                           required>
+                </div>
+
+                <div class="form-item">
+                    <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">게시판 설명</span>
+                    <textarea name="detail" id="article-body" cols="30"
+                              rows="10"
+                              th:text="${board.detail}"
+                              class="bg-gray-100 w-full rounded-md px-4 py-2 border-none"
+                    ></textarea>
+                </div>
+
+                <div class="form-item flex align-center flex-row-reverse gap-4 md:w-1/2 mx-auto">
+                    <button class="flex-1 rounded-full bg-gray-900 hover:bg-gray-800 text-center text-white py-2">
+                        수정
+                    </button>
+                    <a href="/"
+                       class="flex-1 rounded-full bg-gray-400 hover:bg-gray-300 text-center text-white py-2">
+                        <button>취소</button>
+                    </a>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

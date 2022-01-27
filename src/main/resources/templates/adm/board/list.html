@@ -35,6 +35,10 @@
                                         class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                                         작성일
                                     </th>
+                                    <th scope="col"
+                                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        관리
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -50,6 +54,14 @@
                                     </td>
                                     <td th:text="${board.update_date}"
                                         class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400"></td>
+                                    <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                        <a th:href="@{~/adm/boards/modify/} + ${board.id}">
+                                            <span>수정</span>
+                                        </a>
+                                        <a th:href="@{~/adm/boards/delete/} + ${board.id}">
+                                            <span>삭제</span>
+                                        </a>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
