@@ -92,7 +92,6 @@ public class BoardController {
         try {
             boardService.modify(id, boardModifyForm);
             return "redirect:/adm/boards";
-
         } catch (Exception e){
             return "adm/board/modify";
         }
