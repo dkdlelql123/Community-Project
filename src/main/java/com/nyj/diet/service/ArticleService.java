@@ -69,13 +69,15 @@ public class ArticleService {
     }
 
     @Transactional
-    public void modifyArticle(ArticleModifyForm articleModifyForm, Long id){
+    public void modifyArticle(ArticleModifyForm articleModifyForm, Long id, Board board){
         Article findArticle = getById(id);
 
         findArticle.modifyArticle(
             articleModifyForm.getTitle(),
             articleModifyForm.getBody()
         );
+
+        findArticle.setBoard(board);
     }
 
     // 리스트
