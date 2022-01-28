@@ -21,31 +21,48 @@
                     작성하기
                 </a>
             </div>
-        <!--
-        1. 게시글 번호
-        2. 게시글 제목
 
-        반복목 th:each
+            <div class="flex flex-col">
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
+                        <div class="overflow-hidden shadow-md sm:rounded-lg">
+                            <table class="min-w-full">
+                                <thead class="bg-gray-600 dark:bg-gray-700">
+                                <tr>
+                                    </th>
+                                    <th scope="col"
+                                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                        게시판
+                                    </th>
+                                    <th scope="col"
+                                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                        번호
+                                    </th>
+                                    <th scope="col"
+                                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                        제목
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="article : ${articleList}"
+                                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                    <td th:text="${article.boardName}"
+                                        class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"></td>
+                                    <td th:text="${article.id}" class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400"></td>
 
-        게시글 제목을 클릭할 시 게시글 디테일로 이동하도록.
-        -->
-            <table>
-                <tr>
-                    <th>게시판 이름</th>
-                    <th>게시글 번호</th>
-                    <th>게시글 제목</th>
-                </tr>
-                <tr th:each="article : ${articleList}">
-                    <td th:text="${article.boardName}"></td>
-                    <td th:text="${article.id}"></td>
-                    <td>
-                        <a th:href="@{~/articles/} + ${article.id}">
-                            <div th:text="${article.title}"></div>
-                        </a>
-                    </td>
-
-                </tr>
-            </table>
+                                    <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                        <a th:href="@{~/articles/} + ${article.id}">
+                                            <div th:text="${article.title}"></div>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </div>
