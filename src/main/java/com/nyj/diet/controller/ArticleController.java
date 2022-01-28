@@ -130,6 +130,9 @@ public class ArticleController {
     public String showList(Model model){
         List<ArticleDTO> articleList = articleService.getArticleList();
 
+        ArticleDTO articleDTO = articleList.get(0);
+
+        model.addAttribute("boardName", articleDTO.getBoardName());
         model.addAttribute("articleList", articleList);
 
         return "usr/article/list";
@@ -142,7 +145,7 @@ public class ArticleController {
         try {
             ArticleDTO findArticle = articleService.getArticle(id);
             model.addAttribute("article", findArticle);
-            return "use/article/detail";
+            return "usr/article/detail";
         } catch (Exception e){
             return "redirect:/";
         }
