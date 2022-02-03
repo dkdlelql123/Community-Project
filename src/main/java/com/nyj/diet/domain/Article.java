@@ -41,14 +41,12 @@ public class Article {
 
     // 생성 메소드
     public static Article createArticle( String title, String body ) {
-
         Article article = new Article();
 
         article.title = title;
         article.body = body;
 
         return article;
-
     }
 
     // 수정
