@@ -110,9 +110,10 @@ public class ArticleController {
         try{
             ArticleDTO articleDTO = articleService.getArticle(id);
 
-            if(articleDTO.getAuthorName() != "관리자"){
-                return "redirect:/articles";
-            } 
+            // 에러부분            
+            if( articleDTO.getAuthorName() != principal.getName() ){
+                return "redirect:/articles/"+ id;
+            }
 
             articleService.delete(id);
             return "redirect:/articles";

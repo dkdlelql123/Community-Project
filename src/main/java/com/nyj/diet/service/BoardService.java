@@ -3,6 +3,7 @@ package com.nyj.diet.service;
 import com.nyj.diet.dao.BoardRepository;
 import com.nyj.diet.domain.Article;
 import com.nyj.diet.domain.Board;
+import com.nyj.diet.domain.Member;
 import com.nyj.diet.dto.Board.BoardDTO;
 import com.nyj.diet.dto.Board.BoardModifyForm;
 import com.nyj.diet.dto.Board.BoardSaveForm;
@@ -25,10 +26,11 @@ public class BoardService {
     // transactional - db에 저장해야 하기때문에
     // 밑에 findall 은 db에 저장하지 않기에 read only로 아무것도 적지 않음
     @Transactional
-    public void save(BoardSaveForm boardSaveForm) {
+    public void save(BoardSaveForm boardSaveForm, Member member) {
         Board board = Board.createBoard(
                 boardSaveForm.getName(),
-                boardSaveForm.getDetail()
+                boardSaveForm.getDetail(),
+                member
         );
 
         boardRepository.save(board);

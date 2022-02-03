@@ -6,6 +6,5 @@ import lombok.Data;
 public class BoardSaveForm {
 
     private String name;
-
     private String detail;
 }

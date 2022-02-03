@@ -1,6 +1,10 @@
 package com.nyj.diet.config;
 
+import com.nyj.diet.dao.ArticleRepository;
+import com.nyj.diet.dao.BoardRepository;
 import com.nyj.diet.dao.MemberRepository;
+import com.nyj.diet.domain.Article;
+import com.nyj.diet.domain.Board;
 import com.nyj.diet.domain.Member;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,6 +25,7 @@ public class DataInit {
     @PostConstruct
     public void init(){
         initService.initAdmin();
+        initService.initMember();
     }
 
     @Component
@@ -28,6 +33,8 @@ public class DataInit {
     @RequiredArgsConstructor
     static class InitService{
         private final MemberRepository memberRepository;
+        private final BoardRepository boardRepository;
+        private final ArticleRepository articleRepository;
 
         //메소드 생성
         public void initAdmin(){
@@ -45,6 +52,23 @@ public class DataInit {
 
             memberRepository.save(admin);
         }
+
+        public void initMember(){
+            BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
+            for(int i=1 ; i<=5 ; i++) {
+                Member user = Member.createMember(
+                        "user"+i,
+                        bCryptPasswordEncoder.encode("user"+i),
+                        "user"+i,
+                        "user"+i,
+                        "user"+i+"@user.com",
+                        Role.MEMBER
+                );
+                memberRepository.save(user);
+            }
+        }
+
     }
 
 }

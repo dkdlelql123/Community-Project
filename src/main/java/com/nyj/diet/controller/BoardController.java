@@ -1,10 +1,12 @@
 package com.nyj.diet.controller;
 
 import com.nyj.diet.domain.Board;
+import com.nyj.diet.domain.Member;
 import com.nyj.diet.dto.Board.BoardDTO;
 import com.nyj.diet.dto.Board.BoardModifyForm;
 import com.nyj.diet.dto.Board.BoardSaveForm;
 import com.nyj.diet.service.BoardService;
+import com.nyj.diet.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.lang.management.LockInfo;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -21,6 +24,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardController {
     private final BoardService boardService;
+    private final MemberService memberService;
 
     //생성
     @GetMapping("/boards/add")
@@ -32,8 +36,11 @@ public class BoardController {
 
     // 생성
     @PostMapping("/boards/add")
-    public String doAddBoard(BoardSaveForm boardSaveForm){
-        boardService.save(boardSaveForm);
+    public String doAddBoard(BoardSaveForm boardSaveForm, Principal principal){
+
+        Member findAdmin = memberService.findByLoginId(principal.getName());
+
+        boardService.save(boardSaveForm, findAdmin);
 
         // redirect url주소로 넘겨준다.
         return "redirect:/adm/boards";
