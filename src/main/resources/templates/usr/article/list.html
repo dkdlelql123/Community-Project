@@ -48,8 +48,12 @@
                                 <tr th:each="article : ${articleList}"
                                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td th:text="${article.boardName}"
-                                        class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"></td>
-                                    <td th:text="${article.id}" class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400"></td>
+                                        class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+
+                                    </td>
+                                    <td th:text="${article.id}" class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+
+                                    </td>
 
                                     <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                                         <a th:href="@{~/articles/} + ${article.id}">

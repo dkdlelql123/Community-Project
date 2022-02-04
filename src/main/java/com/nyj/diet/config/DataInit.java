@@ -57,8 +57,8 @@ public class DataInit {
 
             for (int i = 0; i < 3; i++) {
                 Board board = Board.createBoard(
-                        "게시판" + i,
-                        "게시판입니다" + i,
+                        i + "번째 게시판",
+                        "게시판입니다",
                         admin
                 );
                 boardRepository.save(board);
@@ -84,15 +84,15 @@ public class DataInit {
 
                 for (int j = 0; j < 3; j++) {
                     count++;
-//                    for (int a = 0; a < 3; a++) {
+//                  for (int a = 0; a < 3; a++) {
                     Article article = Article.createArticle(
-                            "게시물입니다" + count,
-                            "아 정말 정말 백수가 적성에 맞습니다 ^^ " + j
+                            count +"번째 게시물입니다" ,
+                            "아 정말 정말 백수가 적성에 맞습니다 ^^"
                     );
                     article.setMember(user);
                     article.setBoard(boardList.get(j));
                     articleRepository.save(article);
-//                    }
+//                  }
                 }
 
             }
