@@ -1,6 +1,7 @@
 package com.nyj.diet.dto.article;
 
 import com.nyj.diet.domain.Article;
+import com.nyj.diet.domain.Member;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -12,6 +13,7 @@ public class ArticleDTO {
     private String title;
     private String body;
 
+    private String loginId;
     private String authorName;
 
     private Long boardId;
@@ -25,6 +27,7 @@ public class ArticleDTO {
         this.title = article.getTitle();
         this.body= article.getBody();
 
+        this.loginId=article.getMember().getLoginId();
         this.authorName=article.getMember().getLoginId();
 
         this.boardId=article.getBoard().getId();

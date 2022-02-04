@@ -90,14 +90,21 @@ public class ArticleController {
     }
 
     @PostMapping("/articles/modify/{id}")
-     public String doModify(@PathVariable(name="id") Long id, ArticleModifyForm articleModifyForm){
+     public String doModify(@PathVariable(name="id") Long id, ArticleModifyForm articleModifyForm, Principal principal){
         try{
+
+            ArticleDTO findArticle = articleService.getArticle(id);
+            if(!findArticle.getLoginId().equals(principal.getName())){
+               throw new IllegalStateException("잘못된 요청입니다.");
+            }
+
             Board findBoard = boardService.getBoard(articleModifyForm.getBoard_id());
+
             articleService.modifyArticle(articleModifyForm, id, findBoard);
             return "redirect:/boards/" + id;
 
         } catch (Exception e){
-            return "usr/article/list";
+            return "redirect:/";
         }
 
     }
@@ -110,9 +117,10 @@ public class ArticleController {
         try {
             ArticleDTO article = articleService.getArticle(id);
 
-            if(article.getAuthorName().equals(principal.getName())){
+            if(!article.getLoginId().equals(principal.getName())){
                 return "redirect:/articles/"+id;
             }
+
             articleService.delete(id);
             return "redirect:/";
 
