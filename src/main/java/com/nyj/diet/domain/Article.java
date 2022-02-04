@@ -59,10 +59,8 @@ public class Article {
 
     //  연관관계 메소드
     public void setMember(Member member) {
-
         this.member = member;
         member.getArticles().add(this);
-
     }
 
     // 연관관계 메소드

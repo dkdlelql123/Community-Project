@@ -107,22 +107,20 @@ public class ArticleController {
     @GetMapping("/articles/delete/{id}")
     public String deleteArticle(@PathVariable(name="id") Long id, Principal principal){
 
-        try{
-            ArticleDTO articleDTO = articleService.getArticle(id);
+        try {
+            ArticleDTO article = articleService.getArticle(id);
 
-            // 에러부분            
-            if( articleDTO.getAuthorName() != principal.getName() ){
-                return "redirect:/articles/"+ id;
+            if(article.getAuthorName().equals(principal.getName())){
+                return "redirect:/articles/"+id;
             }
-
             articleService.delete(id);
-            return "redirect:/articles";
+            return "redirect:/";
 
-        } catch (Exception e){
+        }catch (Exception e){
             return "redirect:/";
         }
-    }
 
+    }
 
     // 리스트
     @GetMapping("/articles")

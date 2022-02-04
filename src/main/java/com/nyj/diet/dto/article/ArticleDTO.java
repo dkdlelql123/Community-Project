@@ -25,7 +25,7 @@ public class ArticleDTO {
         this.title = article.getTitle();
         this.body= article.getBody();
 
-        this.authorName=article.getMember().getNickname();
+        this.authorName=article.getMember().getLoginId();
 
         this.boardId=article.getBoard().getId();
         this.boardName=article.getBoard().getName();
