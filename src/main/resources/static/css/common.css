@@ -17,6 +17,8 @@ body{
 input, button, label, a {
     outline:none;
 }
+
+
 .sha12 {
     box-shadow:0px 0px 20px rgba(0,0,0,0.12);
 }
@@ -25,4 +27,13 @@ input, button, label, a {
 }
 .sha24 {
     box-shadow:0px 0px 20px rgba(0,0,0,0.24);
+}
+
+header + div {
+    display:flex;
+    justify-content:center;
+}
+
+header + div div.contents {
+    padding:0px 12px;
 }

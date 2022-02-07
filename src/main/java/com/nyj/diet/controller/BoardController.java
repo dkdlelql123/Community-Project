@@ -42,7 +42,7 @@ public class BoardController {
         boardService.save(boardSaveForm, findAdmin);
 
         // redirect url주소로 넘겨준다.
-        return "redirect:/adm/boards";
+        return "redirect:/boards";
     }
 
     // 리스트
@@ -97,7 +97,7 @@ public class BoardController {
 
         try {
             boardService.modify(id, boardModifyForm);
-            return "redirect:/adm/boards";
+            return "redirect:/boards";
         } catch (Exception e){
             return "adm/board/modify";
         }

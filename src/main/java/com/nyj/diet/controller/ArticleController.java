@@ -122,7 +122,7 @@ public class ArticleController {
             }
 
             articleService.delete(id);
-            return "redirect:/";
+            return "redirect:/boards";
 
         }catch (Exception e){
             return "redirect:/";
