@@ -12,15 +12,6 @@
     <div class="container mt-24">
         <div class="contents">
 
-            <div th:switch="${message}">
-                <div th:case="'Success'" class="alert alert-success">
-                    <strong>Success!</strong> Operation performed successfully.
-                </div>
-                <div th:case="'Failed'" class="alert alert-danger">
-                    <strong>Failure!</strong> Operation failed. Please try again
-                </div>
-            </div>
-
             <form action="" th:action="@{~/members/modify/} + ${memberModifyForm.id}"
                   th:object="${memberModifyForm}" method="post">
 
