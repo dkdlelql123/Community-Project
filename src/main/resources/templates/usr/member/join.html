@@ -14,42 +14,46 @@
 
             <!--thymeleaf-->
             <!--method="post" = postmaping-->
-            <form action="" th:action="@{~/members/join}" method="post">
+            <form action="" th:action="@{~/members/join}" th:object="${memberSaveForm}" method="post">
 
                 <div id="formContainer"
                      class="flex flex-col gap-4 w-full px-4 mx-auto lg:w-1/2 lg:px-0">
                     <div class="join-item">
                         <span class="hidden">아이디 : </span>
-                        <input type="text" name="loginId" placeholder="id"
+                        <input type="text" name="loginId" th:field="*{loginId}" th:errorclass="field-error"
+                               placeholder="id"
                                class="bg-gray-100 w-full rounded-full px-4 py-2"
-                               required>
+                               autocomplete="off" >
+                        <span th:errors="*{loginId}" class="text-xs py-1 text-red-800 transition-opacity"></span>
                     </div>
                     <div class="join-item">
                         <span class="hidden">비밀번호 : </span>
-                        <input type="password" name="loginPw"
+                        <input type="password" name="loginPw" th:fied="*{loginPw}" th:errorclass="field-error"
                                placeholder="loginPw"
                                class="bg-gray-100 w-full rounded-full px-4 py-2"
-                               required>
+                               autocomplete="off">
+                        <span th:errors="*{loginPw}" class="text-xs py-1 text-red-800"></span>
                     </div>
                     <div class="join-item">
                         <span class="hidden">이름 : </span>
-                        <input type="text" name="name" placeholder="name"
+                        <input type="text" name="name" placeholder="name" th:fied="*{name}" th:errorclass="field-error"
                                class="bg-gray-100 w-full rounded-full px-4 py-2"
-                               required>
+                               autocomplete="off">
+                        <span th:errors="*{name}" class="text-xs py-1 text-red-800"></span>
                     </div>
                     <div class="join-item">
                         <span class="hidden">닉네임 : </span>
-                        <input type="text" name="nickname"
+                        <input type="text" name="nickname" th:fied="*{nickname}" th:errorclass="field-error"
                                placeholder="nickname"
-                               class="bg-gray-100 w-full rounded-full px-4 py-2"
-                               required>
+                               class="bg-gray-100 w-full rounded-full px-4 py-2" autocomplete="off">
+                        <span th:errors="*{nickname}" class="text-xs py-1 text-red-800"></span>
                     </div>
                     <div class="join-item">
                         <span class="hidden">이메일: </span>
-                        <input type="email" name="email"
+                        <input type="email" name="email" th:fied="*{email}" th:errorclass="field-error"
                                placeholder="email"
-                               class="bg-gray-100 w-full rounded-full px-4 py-2"
-                               required>
+                               class="bg-gray-100 w-full rounded-full px-4 py-2">
+                        <span th:errors="*{email}" class="text-xs py-1 text-red-800"></span>
                     </div>
 
                     <div class="flex align-center flex-row-reverse gap-4">
