@@ -12,9 +12,16 @@
     <div class="container mt-24">
         <div class="contents">
 
-            <!--thymeleaf-->
-            <!--method="post" = postmaping-->
-            <form action="" th:action="@{~/members/modify}"
+            <div th:switch="${message}">
+                <div th:case="'Success'" class="alert alert-success">
+                    <strong>Success!</strong> Operation performed successfully.
+                </div>
+                <div th:case="'Failed'" class="alert alert-danger">
+                    <strong>Failure!</strong> Operation failed. Please try again
+                </div>
+            </div>
+
+            <form action="" th:action="@{~/members/modify/} + ${memberModifyForm.id}"
                   th:object="${memberModifyForm}" method="post">
 
                 <div id="formContainer"
@@ -22,7 +29,7 @@
                     <div class="join-item">
                         <span class="hidden">아이디 : </span>
                         <input type="text" name="loginId" placeholder="id"
-                               th:value="${member.loginId}"
+                               th:field="*{loginId}"
                                class="bg-gray-100 w-full rounded-full px-4 py-2"
                                readonly required>
                     </div>
@@ -30,29 +37,32 @@
                         <span class="hidden">비밀번호 : </span>
                         <input type="password" name="loginPw"
                                placeholder="loginPw"
+                               th:field="*{loginPw}" th:errorclass="field-error"
                                class="bg-gray-100 w-full rounded-full px-4 py-2">
+                        <span th:errors="*{loginPw}" class="text-xs py-1 text-red-800"></span>
                     </div>
                     <div class="join-item">
                         <span class="hidden">이름 : </span>
                         <input type="text" name="name" placeholder="name"
-                               th:value="${member.name}"
+                               th:field="*{name}"
                                class="bg-gray-100 w-full rounded-full px-4 py-2"
-                               readonly required>
+                               readonly>
                     </div>
                     <div class="join-item">
                         <span class="hidden">닉네임 : </span>
                         <input type="text" name="nickname"
                                placeholder="nickname"
-                               th:value="${member.nickname}"
-                               class="bg-gray-100 w-full rounded-full px-4 py-2"
-                               required>
+                               th:field="*{nickname}" th:errorclass="field-error"
+                               class="bg-gray-100 w-full rounded-full px-4 py-2">
+                        <span th:errors="*{nickname}" class="text-xs font-red-800 py-1"></span>
                     </div>
                     <div class="join-item">
                         <span class="hidden">이메일: </span>
                         <input type="email" name="email"
-                               placeholder="email" th:value="${member.email}"
-                               class="bg-gray-100 w-full rounded-full px-4 py-2"
-                               required>
+                               placeholder="email"
+                               th:field="*{email}" th:errorclass="field-error"
+                               class="bg-gray-100 w-full rounded-full px-4 py-2">
+                        <span th:errors="*{email}" class="text-xs font-red-800 py-1"></span>
                     </div>
 
                     <div class="flex align-center flex-row-reverse gap-4">
@@ -61,7 +71,7 @@
                         </button>
                         <a href="/"
                            class="flex-1 rounded-full bg-gray-400 hover:bg-gray-300 text-center text-white py-2">
-                            <button>메인으로</button>
+                            <button type="submit">메인으로</button>
                         </a>
                     </div>
                 </div>

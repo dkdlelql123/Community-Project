@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -72,6 +73,19 @@ public class MemberService implements UserDetailsService {
         memberRepository.save(member);
     }
 
+
+
+    public Member findById(Long id) throws NoSuchElementException{
+        Optional<Member> mOptional = memberRepository.findById(id);
+
+        mOptional.orElseThrow(
+                () -> new NoSuchElementException("존재하지 않은 회원입니다.")
+        );
+
+        return mOptional.get();
+    }
+
+
     public Member findByLoginId(String loginId) throws IllegalStateException{
 
         Optional<Member> memberOptional = memberRepository.findByLoginId(loginId);
@@ -84,11 +98,12 @@ public class MemberService implements UserDetailsService {
     }
     
     //회원정보수정
+
     //변경이니 transactional
     @Transactional
     public Long modifyMember(MemberModifyForm memberModifyForm, String loginId){
         
-        Member findMember = findByLoginId(loginId);
+          Member findMember = findByLoginId(loginId);
         
         // 암호화
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();

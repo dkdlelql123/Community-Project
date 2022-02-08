@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
@@ -63,30 +64,41 @@ public class MemberController {
     }
 
     // 회원정보 수정
-    @GetMapping("/members/modify")
-    public String showModify(Model model, Principal principal) {
-        Member findMember = memberService.findByLoginId(principal.getName());
+    @GetMapping("/members/modify/{id}")
+    public String showModify(@PathVariable(name="id") Long id, Model model, Principal principal) {
 
-        model.addAttribute("member", findMember); // 수정 전 데이터 뿌려주기
+        Member findMember = memberService.findById(id);
 
-        model.addAttribute("memberModifyForm", new MemberModifyForm());
+        if(!findMember.getLoginId().equals(principal.getName())){
+            return "redirect:/";
+        }
+        model.addAttribute("memberModifyForm", new MemberModifyForm(findMember));
 
         return "usr/member/modify";
     }
 
-    @PostMapping("/members/modify")
-    public String doModify(MemberModifyForm memberModifyForm, Model model, Principal principal) {
+    @PostMapping("/members/modify/{id}")
+    public String doModify(@PathVariable(name="id") Long id, @Validated MemberModifyForm memberModifyForm, BindingResult bindingResult, Model model, Principal principal) {
 
-        try {
-
-            memberService.modifyMember(memberModifyForm, principal.getName());
-
-        } catch (Exception e) {
-
-            model.addAttribute("err_msg", e.getMessage());
-
+        // validated > error 시 bindingResult
+        if(bindingResult.hasErrors()){
             return "usr/member/modify";
         }
-        return "redirect:/";
+
+        Member findMember = memberService.findById(id);
+
+        if( !principal.getName().equals(findMember.getLoginId())){
+            return "redirect:/";
+        }
+
+        try {
+            memberService.modifyMember(memberModifyForm, principal.getName());
+        } catch (Exception e) {
+            model.addAttribute("err_msg", e.getMessage());
+            model.addAttribute("memberModifyForm", new MemberModifyForm(findMember));
+            return "redirect:/";
+        }
+
+        return "redirect:/members/modify/"+id;
     }
 }
