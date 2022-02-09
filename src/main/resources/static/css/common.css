@@ -35,5 +35,6 @@ header + div {
 }
 
 header + div div.contents {
-    padding:0px 12px;
+    display:block;
+    padding:0px 20px;
 }

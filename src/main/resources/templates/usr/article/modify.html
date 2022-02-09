@@ -11,19 +11,23 @@
     <div class="container mt-12 mx-auto ms:w-3/4 px-4 sm::p-0">
         <div class="bg-white rounded-lg border-none p-4 sm:p-6 lg:p-8 sha12">
 
-            <form th:action="@{~/articles/modify/} + ${article.id}"  method="POST" class="space-y-6">
-                <input type="hidden" th:value="${article.boardId}" name="board_id">
+            <form th:action="@{~/articles/modify/} + ${articleId}" method="POST"
+                  th:object="${articleModifyForm}" class="space-y-6">
+                <input type="hidden" th:value="${boardId}" name="board_id">
 
                 <div class="text-center sm:mt-6">
-                    <h3 class="text-2xl font-bold text-gray-900s text-center mt-1">게시물 수정하기</h3>
+                    <h3 class="text-2xl font-bold text-gray-900s text-center mt-1">
+                        게시물 수정하기</h3>
                 </div>
 
                 <div class="form-item">
                     <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">제목</span>
                     <input name="title" type="text" placeholder="제목을 입력해주세요."
                            class="bg-gray-100 w-full rounded-md px-4 py-2 border-none"
-                           th:value="${article.title}"
-                           required>
+                           th:field="*{title}" th:errorclass="field-error">
+
+                    <span th:errors="*{title}"
+                          class="text-xs text-red-800 px-1"></span>
                 </div>
 
                 <div class="form-item">
@@ -32,9 +36,12 @@
                               id="article-body"
                               cols="30"
                               rows="5"
-                              th:text="${article.body}"
+                              th:field="*{body}" th:errorclass="field-error" 
                               class="bg-gray-100 w-full rounded-md px-4 py-2 border-none"
                               placeholder="내용을 입력해주세요."></textarea>
+
+                    <span th:errors="*{body}"
+                          class="text-xs text-red-800 px-1"></span>
                 </div>
 
                 <div class="form-item flex align-center flex-row-reverse gap-4 md:w-1/2 mx-auto">

@@ -86,11 +86,13 @@ public class ArticleController {
     @GetMapping("/articles/modify/{id}")
     public String showModify(@PathVariable(name="id") Long id, Model model){
         try{
-            ArticleDTO article = articleService.getArticle(id);
+            ArticleDTO findArticle = articleService.getArticle(id);
 
-            model.addAttribute(
-                    "article", article
-            );
+            model.addAttribute("boardName", findArticle.getBoardName());
+            model.addAttribute("boardId", findArticle.getBoardId());
+            model.addAttribute("articleId", findArticle.getId());
+            model.addAttribute("articleModifyForm", new ArticleModifyForm(findArticle) );
+
             return "usr/article/modify";
 
         }catch (Exception e){
@@ -99,7 +101,18 @@ public class ArticleController {
     }
 
     @PostMapping("/articles/modify/{id}")
-     public String doModify(@PathVariable(name="id") Long id, ArticleModifyForm articleModifyForm, Principal principal){
+     public String doModify(@PathVariable(name="id") Long id,@Validated ArticleModifyForm articleModifyForm, BindingResult bindingResult, Principal principal, Model model){
+
+        if(bindingResult.hasErrors()){
+            ArticleDTO findArticle = articleService.getArticle(id);
+
+            model.addAttribute("boardName", findArticle.getBoardName());
+            model.addAttribute("boardId", findArticle.getBoardId());
+            model.addAttribute("articleId", findArticle.getId());
+
+            return "usr/article/modify";
+        }
+
         try{
 
             ArticleDTO findArticle = articleService.getArticle(id);
