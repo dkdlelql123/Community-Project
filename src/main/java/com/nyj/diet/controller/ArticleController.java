@@ -33,9 +33,13 @@ public class ArticleController {
     @GetMapping("/boards/{id}/articles/write")
     public String showArticleWrite(@PathVariable(name = "id") Long id, Model model) {
 
-        BoardDTO boardDetail = boardService.getBoardDetail(id);
-        model.addAttribute("board", boardDetail);
+//        이렇게 넣을 경우 html th에 넣을 시 error 발생
+//        BoardDTO boardDetail = boardService.getBoardDetail(id);
 
+        ArticleDTO findArticle = articleService.getArticle(id);
+
+        model.addAttribute("boardName", findArticle.getBoardName());
+        model.addAttribute("boardId", findArticle.getBoardId());
         model.addAttribute("articleSaveForm", new ArticleSaveForm());
 
         return "usr/article/write";
@@ -47,6 +51,12 @@ public class ArticleController {
     public String doWrite(@Validated ArticleSaveForm articleSaveForm, BindingResult bindingResult, Model model, Principal principal, @PathVariable(name = "id") Long id) {
 
         if (bindingResult.hasErrors()) {
+
+            ArticleDTO findArticle = articleService.getArticle(id);
+
+            model.addAttribute("boardName", findArticle.getBoardName());
+            model.addAttribute("boardId", findArticle.getBoardId());
+
             return "usr/article/write";
         }
 
