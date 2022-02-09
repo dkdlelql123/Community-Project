@@ -10,6 +10,8 @@ import com.nyj.diet.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +37,11 @@ public class BoardController {
 
     // 생성
     @PostMapping("/adm/boards/add")
-    public String doAddBoard(BoardSaveForm boardSaveForm, Principal principal){
+    public String doAddBoard(@Validated BoardSaveForm boardSaveForm, BindingResult bindingResult, Principal principal){
+
+        if(bindingResult.hasErrors()){
+            return "adm/board/add";
+        }
 
         Member findAdmin = memberService.findByLoginId(principal.getName());
 
@@ -73,12 +79,14 @@ public class BoardController {
 
     // 수정
     @GetMapping("/adm/boards/modify/{id}")
-    public String showModifyBoard(@PathVariable(name = "id")Long id,Model model){
+    public String showModifyBoard(@PathVariable(name = "id")Long id, Model model){
+
 
         try{
             BoardDTO board = boardService.getBoardDetail(id);
 
-            model.addAttribute("board", new BoardModifyForm(
+            model.addAttribute("boardId", board.getId());
+            model.addAttribute("boardModifyForm", new BoardModifyForm(
                     board.getId(),
                     board.getName(),
                     board.getDetail()
@@ -87,13 +95,20 @@ public class BoardController {
             return "adm/board/modify";
 
         }catch(Exception e){
-            return "redirect:/";
+            return "redirect:/boards";
         }
 
     }
 
     @PostMapping("/adm/boards/modify/{id}")
-    public String doModifyBoard(@PathVariable(name = "id") Long id,BoardModifyForm boardModifyForm){
+    public String doModifyBoard(@PathVariable(name = "id") Long id,@Validated BoardModifyForm boardModifyForm ,BindingResult bindingResult, Model model){
+
+        BoardDTO findBoard = boardService.getBoardDetail(id);
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("boardId", findBoard.getId());
+            return "adm/board/modify";
+        }
 
         try {
             boardService.modify(id, boardModifyForm);
@@ -110,7 +125,7 @@ public class BoardController {
 
         try{
             boardService.delete(id);
-            return "redirect:/adm/boards";
+            return "redirect:/boards";
 
         } catch (Exception e){
             return "adm/board/list";
