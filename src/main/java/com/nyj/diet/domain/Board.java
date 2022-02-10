@@ -48,4 +48,5 @@ public class Board {
 
         this.update_date = LocalDateTime.now();
     }
+
 }

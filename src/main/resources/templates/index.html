@@ -6,8 +6,35 @@
 <head>
     <meta charset="UTF-8">
     <title>내일부터 다이어트 🍔🍕🍿</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@1.25.4/dist/full.css"
+          rel="stylesheet" type="text/css"/>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css"
+          rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<div layout:fragment="content"></div>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="contents">
+
+            <div class="slider max-w-full overflow-hidden">
+                <h2>제목</h2>
+
+<!--                <div class="flex gap-1" style="width:300%">-->
+<!--                    <div th:each="article : ${boards.articleListDTO}" class="card shadow-xl image-full">-->
+<!--                        <figure>-->
+<!--                            <img src="https://picsum.photos/id/1005/150/150">-->
+<!--                        </figure>-->
+<!--                        <div class="justify-end card-body">-->
+<!--                            <h2 th:text="${article.title}" class="card-title">Image overlay</h2>-->
+<!--                            <p  th:text="${article.reg_date}">2022.01.01</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+            </div>
+
+        </div>
+    </div>
+</div>
 </body>
 </html>

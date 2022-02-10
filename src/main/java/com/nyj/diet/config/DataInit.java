@@ -14,6 +14,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 // 스프링부트
@@ -55,10 +57,17 @@ public class DataInit {
 
             memberRepository.save(admin);
 
+            ArrayList<String> boardList = new ArrayList<String>();
+            boardList.add("식단기록");
+            boardList.add("목표설정");
+            boardList.add("유지어터");
+            boardList.add("자유롭게");
+
             for (int i = 0; i < 3; i++) {
                 Board board = Board.createBoard(
-                        i + "번째 게시판",
-                        "게시판입니다",
+                        boardList.get(1),
+                        "365일 다이어트 하는 우리를 위해!" +
+                                "하지만 맛있는건 0kcal! ",
                         admin
                 );
                 boardRepository.save(board);

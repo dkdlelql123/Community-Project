@@ -1,5 +1,6 @@
 package com.nyj.diet.service;
 
+import com.nyj.diet.dao.ArticleRepository;
 import com.nyj.diet.dao.BoardRepository;
 import com.nyj.diet.domain.Article;
 import com.nyj.diet.domain.Board;
@@ -22,6 +23,7 @@ import java.util.Optional;
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final ArticleRepository articleRepository;
 
     // transactional - db에 저장해야 하기때문에
     // 밑에 findall 은 db에 저장하지 않기에 read only로 아무것도 적지 않음
@@ -52,6 +54,8 @@ public class BoardService {
         );
         return boardOptional.get();
     }
+
+
 
     public BoardDTO getBoardDetail(Long id){
         // 존재하는 board 인가 확인하기 위해
@@ -107,4 +111,25 @@ public class BoardService {
 
     }
 
+    // main에서 사용
+//    public BoardDTO getNewBoardDetail(long boardId) {
+//        Optional<Board> boardOptional = findById(boardId);
+//
+//        boardOptional.orElseThrow(
+//                () -> new NoSuchElementException("해당 게시판은 존재하지 않습니다.")
+//        );
+//
+//        Board findBoard = boardOptional.get();
+//        long board_Id = (long) findBoard.getId();
+//
+//        List<ArticleListDTO> articleList = new ArrayList<>();
+//        List<Article> articles = articleRepository.findNewArticle(board_Id);
+//
+//        for (Article article : articles){
+//            ArticleListDTO articleListDTO = new ArticleListDTO(article);
+//            articleList.add(articleListDTO);
+//        }
+//
+//        return new BoardDTO(findBoard, articleList);
+//    }
 }
