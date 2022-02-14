@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 회원</title>
+</head>
+<body>
+<div layout:fragment="content">
+
+    <ul>
+        <li th:each="member : ${members}" class="flex">
+            <div th:text="${member.loginId}"></div>
+            <div th:text="${member.loginId}">아이디</div>
+            <div th:text="${member.name}">이름</div>
+            <div th:text="${member.nickname}">닉네임</div>
+            <div th:text="${member.regDate}">가입일</div>
+        </li>
+    </ul>
+
+</div>
+</body>
+</html>
