@@ -4,20 +4,61 @@
       layout:decorate="~{layouts/layout}">
 <head>
     <meta charset="UTF-8">
-    <title>관리자 회원</title>
+    <title>관리자 - 회원목록</title>
 </head>
 <body>
 <div layout:fragment="content">
 
-    <ul>
-        <li th:each="member : ${members}" class="flex">
-            <div th:text="${member.loginId}"></div>
-            <div th:text="${member.loginId}">아이디</div>
-            <div th:text="${member.name}">이름</div>
-            <div th:text="${member.nickname}">닉네임</div>
-            <div th:text="${member.regDate}">가입일</div>
-        </li>
-    </ul>
+    <div class="flex flex-col">
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
+                <div class="overflow-hidden shadow-md sm:rounded-lg">
+                    <table class="min-w-full">
+                        <thead class="bg-gray-100 dark:bg-gray-700">
+                        <tr>
+                            <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                아이디
+                            </th>
+                            <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                이름
+                            </th>
+                            <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                닉네임
+                            </th>
+                            <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                가입일
+                            </th>
+                            <th scope="col" class="relative py-3 px-6">
+                                <span class="sr-only">Edit</span>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr  th:each="member : ${members}" class="border-b odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
+                            <td th:text="${member.loginId}" class="py-2 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                login id
+                            </td>
+                            <td th:text="${member.name}" class="py-2 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                name
+                            </td>
+                            <td  th:text="${member.nickname}" class="py-2 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                nickname
+                            </td>
+                            <td th:text="${member.regDate}" class="py-2 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                regDate
+                            </td>
+                            <td class="py-2 px-6 text-sm font-medium text-right whitespace-nowrap">
+                                <a th:href="@{~/adm/members/detail/} + ${member.memberId}" class="text-blue-700 dark:text-blue-400">
+                                    <i class="fa-light fa-pen"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 </body>
