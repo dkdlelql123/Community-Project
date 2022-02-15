@@ -67,7 +67,7 @@
                     <a href="#" class="flex text-sm text-gray-400 gap-1">
                         <div th:text="${ article.id }"></div>
                         <div th:text="${ article.title }"></div>
-                        <div th:text="${ article.reg_date }"></div>
+                        <div th:text="${#temporals.format(article.regDate, 'yyyy-MM-dd')}"></div>
                     </a>
                 </li>
             </ul>

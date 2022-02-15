@@ -8,6 +8,7 @@ import com.nyj.diet.dto.member.MemberDTO;
 import com.nyj.diet.dto.member.MemberDetailDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,6 +58,15 @@ public class AdmMemberService {
 
         return new MemberDetailDTO(findMember, articleDTOList);
 
+    }
+
+
+    @Transactional
+    public void banMember(Long memberId){
+        Member findMember = getMember(memberId);
+
+        // 회원 데이터 삭제
+        memberRepository.delete(findMember);
     }
 
 }

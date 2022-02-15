@@ -5,6 +5,7 @@ import com.nyj.diet.dto.member.MemberDetailDTO;
 import com.nyj.diet.service.AdmMemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,6 +38,12 @@ public class AdmMemberController {
         return "adm/member/detail";
     }
 
+    @GetMapping("/members/ban/{id}")
+    public String banMember(@PathVariable(name = "id") Long id){
+        admMemberService.banMember(id);
+
+        return "redirect:/adm/members/list";
+    }
 
 
 
