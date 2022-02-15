@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 - 게시판목록</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="container">
+        <div class="contents">
+
+            <h1 class="text-2xl font-bold text-gray-900 text-center my-6">
+                <span>게시판 목록</span>
+            </h1>
+
+            <div class="flex flex-col">
+                <div class="overflow-x-auto">
+                    <div class="inline-block py-2 min-w-full">
+                        <div class="overflow-hidden shadow-md sm:rounded-lg">
+                            <table class="min-w-full">
+                                <thead class="bg-gray-100 dark:bg-gray-700">
+                                <tr>
+                                    <th scope="col"
+                                        class="py-2 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        번호
+                                    </th>
+                                    <th scope="col"
+                                        class="py-2 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        제목
+                                    </th>
+                                    <th scope="col" class="relative py-2 px-6">
+                                        <span class="sr-only">Edit</span>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="board : ${boards}"
+                                    class="border-b odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
+                                    <td th:text="${board.boardId}"
+                                        class="py-2 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        login id
+                                    </td>
+                                    <td class="py-2 px-6 text-sm text-gray-500 flex-inline flex-column gap-2" >
+                                        <div th:text="${board.name}">
+                                        name
+                                        </div>
+                                        <div th:text="${board.detail}">
+                                            detail
+                                        </div>
+                                    </td>
+                                    <td class="py-2 px-6 text-sm inline-flex justify-center gap-2 items-center">
+                                        <a
+                                           class="text-gray-300">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a
+                                           class="text-gray-300">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

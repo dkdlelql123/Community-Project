@@ -24,19 +24,6 @@ public class AdmController {
         return "adm/general/page";
     }
 
-
-    @GetMapping("/members")
-    public String showManageMember(){
-        return "adm/member/main";
-    }
-
-
-    @GetMapping("/boards")
-    public String showManageBoard(){
-        return "adm/board/main";
-    }
-
-
     @GetMapping("/articles")
     public String showManageArticle(){
         return "adm/article/main";

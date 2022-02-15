@@ -20,7 +20,7 @@ public class AdmMemberController {
 
     private final AdmMemberService admMemberService;
 
-    @GetMapping("/members/list")
+    @GetMapping("/members")
     public String showManageMember(Model model){
 
         List<MemberDTO> members = admMemberService.getMemberList();

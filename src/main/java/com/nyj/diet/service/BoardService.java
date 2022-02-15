@@ -6,6 +6,7 @@ import com.nyj.diet.domain.Article;
 import com.nyj.diet.domain.Board;
 import com.nyj.diet.domain.Member;
 import com.nyj.diet.dto.Board.BoardDTO;
+import com.nyj.diet.dto.Board.BoardListDTO;
 import com.nyj.diet.dto.Board.BoardModifyForm;
 import com.nyj.diet.dto.Board.BoardSaveForm;
 import com.nyj.diet.dto.article.ArticleListDTO;
@@ -24,6 +25,24 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
     private final ArticleRepository articleRepository;
+
+    public List<BoardListDTO> getBoardList (){
+
+        // 새로 넣을 공간
+        List<BoardListDTO> boardListDTO = new ArrayList<>();
+
+        // board 전체를 불러옴
+        List<Board> boardList = boardRepository.findAll();
+
+        // 데이터 타입을 변경한 다음 새로 넣을 공간(리스트)에 넣어준다.
+        for(Board board : boardList){
+            BoardListDTO boardListDTO1 = new BoardListDTO(board);
+            boardListDTO.add(boardListDTO1);
+        }
+
+        return boardListDTO;
+    }
+
 
     // transactional - db에 저장해야 하기때문에
     // 밑에 findall 은 db에 저장하지 않기에 read only로 아무것도 적지 않음
