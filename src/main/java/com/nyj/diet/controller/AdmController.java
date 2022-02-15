@@ -19,14 +19,9 @@ public class AdmController {
 
     private final AdmService admService;
 
-    @GetMapping("/")
+    @GetMapping("/page")
     public String showAdminPage(){
-        return "adm/general/page";
-    }
-
-    @GetMapping("/articles")
-    public String showManageArticle(){
-        return "adm/article/main";
+        return "adm/general/main";
     }
 
 }
