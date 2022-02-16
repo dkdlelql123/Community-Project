@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,6 +30,18 @@ public class AdmArticleService {
         }
 
         return articleListDTO;
+    }
+
+    @Transactional
+    public void deleteArticle(Long id){
+        Optional<Article> findArticle = articleRepository.findById(id);
+
+        findArticle.orElseThrow(
+                ()-> new IllegalStateException("존재하지 않는 게시물입니다.")
+        );
+
+        articleRepository.delete(findArticle.get());
+
     }
 
 }

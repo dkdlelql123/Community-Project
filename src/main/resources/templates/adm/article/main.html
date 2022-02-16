@@ -61,16 +61,16 @@
                                         <div th:text="${#temporals.format(article.reg_date, 'yyyy-MM-dd')}" >regDate</div>
                                     </td>
 
-<!--                                    <td class="py-2 px-6 text-sm flex justify-center gap-2 items-center">-->
-<!--                                        <a th:href="@{~/adm/members/detail/} + ${member.memberId}"-->
-<!--                                           class="text-gray-300">-->
-<!--                                            <i class="fas fa-edit"></i>-->
-<!--                                        </a>-->
+                                    <td class="py-2 px-6 text-sm">
+                                        <a th:href="@{~/adm/articles/delete/} + ${article.id}"
+                                           class="text-gray-300">
+                                            <i class="fas trash"></i>삭제
+                                        </a>
 <!--                                        <a th:href="@{~/adm/members/ban/} + ${member.memberId}"-->
 <!--                                           class="text-gray-300">-->
 <!--                                            <i class="fas fa-trash"></i>-->
 <!--                                        </a>-->
-<!--                                    </td>-->
+                                    </td>
                                 </tr>
                                 </tbody>
                             </table>
