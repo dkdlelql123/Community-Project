@@ -65,7 +65,7 @@ public class DataInit {
 
             for (int i = 0; i < 3; i++) {
                 Board board = Board.createBoard(
-                        boardList.get(1),
+                        boardList.get(i),
                         "365일 다이어트 하는 우리를 위해!" +
                                 "하지만 맛있는건 0kcal! ",
                         admin
@@ -93,7 +93,7 @@ public class DataInit {
 
                 for (int j = 0; j < 3; j++) {
                     count++;
-//                  for (int a = 0; a < 3; a++) {
+                  for (int a = 0; a < 3; a++) {
                     Article article = Article.createArticle(
                             count +"번째 게시물입니다" ,
                             "아 정말 정말 백수가 적성에 맞습니다 ^^"
@@ -101,7 +101,7 @@ public class DataInit {
                     article.setMember(user);
                     article.setBoard(boardList.get(j));
                     articleRepository.save(article);
-//                  }
+                  }
                 }
 
             }

@@ -2,9 +2,12 @@ package com.nyj.diet.service;
 
 import com.nyj.diet.config.Role;
 import com.nyj.diet.dao.MemberRepository;
+import com.nyj.diet.domain.Article;
 import com.nyj.diet.domain.Member;
+import com.nyj.diet.dto.article.ArticleDTO;
 import com.nyj.diet.dto.member.MemberModifyForm;
 import com.nyj.diet.dto.member.MemberSaveForm;
+import com.nyj.diet.dto.member.MyPageDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,6 +16,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -22,6 +27,7 @@ import java.util.Optional;
 public class MemberService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
+    private final ArticleService articleService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -96,6 +102,26 @@ public class MemberService implements UserDetailsService {
 
         return memberOptional.get();
     }
+
+
+
+    public MyPageDTO getMyPageDTO(String loginId) {
+
+        Member findMember = findByLoginId(loginId);
+
+        List<ArticleDTO> articleDTOList = new ArrayList<>();
+        List<Article> findArticles =  findMember.getArticles();
+
+        for(Article article : findArticles){
+//            ArticleDTO articleDTO = new ArticleDTO(article);
+            ArticleDTO articleDTO = articleService.getArticle(article.getId());
+            articleDTOList.add(articleDTO);
+        }
+
+        return new MyPageDTO(findMember, articleDTOList);
+    }
+
+
     
     //회원정보수정
 
@@ -117,5 +143,4 @@ public class MemberService implements UserDetailsService {
         return findMember.getId();
 
     }
-
 }

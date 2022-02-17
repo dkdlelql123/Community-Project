@@ -35,7 +35,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         .mvcMatchers(
                                 "/articles/**",
                                 "/",
-                                "/members/modify/**"
+                                "/members/modify/**",
+                                "/mypage/**"
                         )
                         .permitAll()
                         .mvcMatchers(
