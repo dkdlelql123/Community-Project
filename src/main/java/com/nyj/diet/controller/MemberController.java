@@ -27,7 +27,7 @@ public class MemberController {
 
         boolean isExists = memberService.isDupleMember(loginId);
 
-        CheckStatus checkStatus = new CheckStatus(isExists) ;
+        CheckStatus checkStatus = new CheckStatus(isExists);
 
         return checkStatus;
     }

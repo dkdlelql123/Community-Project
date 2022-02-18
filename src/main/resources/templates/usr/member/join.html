@@ -24,7 +24,8 @@
 
             <!--thymeleaf-->
             <!--method="post" = postmaping-->
-            <form action="" th:action="@{~/members/join}" th:object="${memberSaveForm}" method="post">
+            <form action="" th:action="@{~/members/join}" th:object="${memberSaveForm}" method="post"
+                  onsubmit="return checkStatus()" >
 
                 <div id="formContainer"
                      class="flex flex-col gap-4 w-full px-4 mx-auto lg:w-1/2 lg:px-0">
@@ -69,7 +70,8 @@
                     </div>
 
                     <div class="flex align-center flex-row-reverse gap-4">
-                        <button class="flex-1 rounded-full bg-gray-900 hover:bg-gray-800 text-center text-white py-2">
+                        <button
+                            class="flex-1 rounded-full bg-gray-900 hover:bg-gray-800 text-center text-white py-2">
                             회원가입
                         </button>
                         <a href="/"
