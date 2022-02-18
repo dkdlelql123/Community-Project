@@ -59,15 +59,13 @@ public class DataInit {
 
             ArrayList<String> boardList = new ArrayList<String>();
             boardList.add("식단기록");
-            boardList.add("목표설정");
-            boardList.add("유지어터");
-            boardList.add("자유롭게");
+            boardList.add("운동기록");
+            boardList.add("내일부터");
 
             for (int i = 0; i < 3; i++) {
                 Board board = Board.createBoard(
                         boardList.get(i),
-                        "365일 다이어트 하는 우리를 위해!" +
-                                "하지만 맛있는건 0kcal! ",
+                        i+"번째 게시판입니다",
                         admin
                 );
                 boardRepository.save(board);
@@ -80,7 +78,7 @@ public class DataInit {
             List<Board> boardList = boardRepository.findAll();
 
             int count = 0;
-            for (int i = 1; i <= 5; i++) {
+            for (int i = 1; i <= 2; i++) {
                 Member user = Member.createMember(
                         "user" + i,
                         bCryptPasswordEncoder.encode("user" + i),
@@ -92,8 +90,8 @@ public class DataInit {
                 memberRepository.save(user);
 
                 for (int j = 0; j < 3; j++) {
-                    count++;
                   for (int a = 0; a < 3; a++) {
+                    count++;
                     Article article = Article.createArticle(
                             count +"번째 게시물입니다" ,
                             "아 정말 정말 백수가 적성에 맞습니다 ^^"
