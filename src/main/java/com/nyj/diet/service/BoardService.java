@@ -5,10 +5,7 @@ import com.nyj.diet.dao.BoardRepository;
 import com.nyj.diet.domain.Article;
 import com.nyj.diet.domain.Board;
 import com.nyj.diet.domain.Member;
-import com.nyj.diet.dto.Board.BoardDTO;
-import com.nyj.diet.dto.Board.BoardListDTO;
-import com.nyj.diet.dto.Board.BoardModifyForm;
-import com.nyj.diet.dto.Board.BoardSaveForm;
+import com.nyj.diet.dto.Board.*;
 import com.nyj.diet.dto.article.ArticleListDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -75,7 +72,6 @@ public class BoardService {
     }
 
 
-
     public BoardDTO getBoardDetail(Long id){
         // 존재하는 board 인가 확인하기 위해
         Optional<Board> boardOptional = findById(id);
@@ -131,24 +127,23 @@ public class BoardService {
     }
 
     // main에서 사용
-//    public BoardDTO getNewBoardDetail(long boardId) {
-//        Optional<Board> boardOptional = findById(boardId);
-//
-//        boardOptional.orElseThrow(
-//                () -> new NoSuchElementException("해당 게시판은 존재하지 않습니다.")
-//        );
-//
-//        Board findBoard = boardOptional.get();
-//        long board_Id = (long) findBoard.getId();
-//
-//        List<ArticleListDTO> articleList = new ArrayList<>();
-//        List<Article> articles = articleRepository.findNewArticle(board_Id);
-//
-//        for (Article article : articles){
-//            ArticleListDTO articleListDTO = new ArticleListDTO(article);
-//            articleList.add(articleListDTO);
-//        }
-//
-//        return new BoardDTO(findBoard, articleList);
-//    }
+    public List<BoardDTO> getBoards(){
+
+        List<BoardDTO> indexBoardList = new ArrayList<>();
+
+        List<Board> boards =  boardRepository.findAll();
+        List<Long> boardIdList = new ArrayList<>();
+
+        for (Board board : boards){
+            Long id = board.getId();
+            boardIdList.add(id);
+        }
+
+        for (Long boardId : boardIdList){
+            BoardDTO boardDTO = getBoardDetail(boardId);
+            indexBoardList.add(boardDTO);
+        }
+
+        return indexBoardList;
+    }
 }

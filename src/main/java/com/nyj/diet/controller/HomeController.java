@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
@@ -17,10 +19,9 @@ public class HomeController {
     @GetMapping("/")
     public String showIndex(Model model) {
 
-        long boardId = 1;
-//        BoardDTO findBoardDetail = boardService.getNewBoardDetail(boardId);
-//        model.addAttribute("boards", findBoardDetail);
+        List<BoardDTO> boardList = boardService.getBoards();
+        model.addAttribute("boards", boardList);
 
-        return "index"; //주소를 뱉는다.
+        return "index";
     }
 }

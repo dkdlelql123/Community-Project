@@ -2,6 +2,7 @@ package com.nyj.diet.dto.Board;
 
 import com.nyj.diet.domain.Board;
 import com.nyj.diet.dto.article.ArticleListDTO;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -27,5 +28,6 @@ public class BoardDTO {
         this.reg_date = board.getReg_date();
         this.update_date = board.getUpdate_date();
     }
+
 
 }

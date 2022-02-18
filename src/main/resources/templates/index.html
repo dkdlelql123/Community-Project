@@ -19,17 +19,13 @@
             <div class="slider max-w-full overflow-hidden">
                 <h2>제목</h2>
 
-<!--                <div class="flex gap-1" style="width:300%">-->
-<!--                    <div th:each="article : ${boards.articleListDTO}" class="card shadow-xl image-full">-->
-<!--                        <figure>-->
-<!--                            <img src="https://picsum.photos/id/1005/150/150">-->
-<!--                        </figure>-->
-<!--                        <div class="justify-end card-body">-->
-<!--                            <h2 th:text="${article.title}" class="card-title">Image overlay</h2>-->
-<!--                            <p  th:text="${article.reg_date}">2022.01.01</p>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
+                <div th:each="board:${boards}">
+                    <div th:text="${board.name}"></div>
+                    <div th:each="article : ${board.articleListDTO}">
+                        <h2 th:text="${article.title}" class="card-title">TITLE</h2>
+                        <p  th:text="${article.reg_date}">REGDATE</p>
+                    </div>
+                </div>
 
             </div>
 
