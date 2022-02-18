@@ -4,6 +4,43 @@
 let CHECK_STATUS = false;
 let LOGIN_ID_STATUS = false;
 let NICKNAME_STATUS = false;
+let EMAIL_STATUS = false;
+
+//이메일 중복 체크
+async function checkDupleEmail(){
+    console.log("이메일 중복 체크 시작");
+
+    let inputEmail = document.querySelector("#email");
+    let email = inputEmail.value;
+
+    console.log(email);
+
+    await fetch(
+        "http://localhost:8086/members/check/email?email="+email
+    ).then(
+
+        (response) => {
+            return response.json();
+        }
+
+    ).then(
+
+        (data) => {
+            let isCheck = data;
+            if(data.status || email===""){
+                EMAIL_STATUS = false;
+                alert("사용할 수 없는 이메일 입니다.");
+            } else {
+                EMAIL_STATUS = true;
+                alert("사용 가능한 이메일 입니다.")
+            }
+        }
+
+    ).catch(
+        (error) => { console.log(error) }
+    )
+
+}
 
 
 // 닉네임 중복 체크
@@ -13,13 +50,10 @@ async function checkDupleNickname(){
     let inputNickname = document.querySelector("#nickname");
     let nickname = inputNickname.value;
 
-    console.log(nickname);
-
     await fetch(
         "http://localhost:8086/members/check/nickname?nickname="+nickname
     ).then(
         (response) => {
-//            console.log(response)
             return response.json();
         }
     ).then(
@@ -66,19 +100,14 @@ async function checkDupleLoginId(){
     ).then(
         (data) => {
             let idCheck = data;
-            console.log("idCheck");
-            console.log(idCheck);
-            console.log(idCheck.status);
+
             if(idCheck.status || loginId === "" ){
                 LOGIN_ID_STATUS = false;
-                alert("가입하실 수 없는 id 입니다.")
+                alert("사용할 수 없는 id 입니다.")
             } else {
                 LOGIN_ID_STATUS = true;
                 alert("사용이 가능한 id 입니다.");
             }
-
-            console.log("LOGIN_ID_STATUS");
-            console.log(LOGIN_ID_STATUS);
         }
     ).catch(
         (error) => {
@@ -90,14 +119,11 @@ async function checkDupleLoginId(){
 
 // 회원가입시 아이디 중복확인 했는지 확인
 function checkStatus(){
-    if(LOGIN_ID_STATUS === true && NICKNAME_STATUS === true){
+    if(LOGIN_ID_STATUS === true && NICKNAME_STATUS === true  && EMAIL_STATUS === true){
         CHECK_STATUS = true;
     } else {
         CHECK_STATUS = false;
     }
-
-    console.log("CHECK_STATUS");
-    console.log(CHECK_STATUS);
 
     if(!LOGIN_ID_STATUS) {
         alert("아이디 중복확인을 해주시길 바랍니다.");
@@ -109,6 +135,10 @@ function checkStatus(){
         return false;
     }
 
+    if(!EMAIL_STATUS){
+        alert("이메일 중복확인을 해주시길 바랍니다.");
+        return false;
+    }
 
     return true;
 }

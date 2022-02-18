@@ -151,4 +151,8 @@ public class MemberService implements UserDetailsService {
     public boolean isDupleNickname(String nickname) {
         return memberRepository.existsByNickname(nickname);
     }
+
+    public boolean isDupleEmail(String email) {
+        return memberRepository.existsByEmail(email);
+    }
 }
