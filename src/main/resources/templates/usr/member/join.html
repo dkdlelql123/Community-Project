@@ -13,6 +13,8 @@
             alert(err_msg);
         }
         /*]]*/
+
+
     </script>
     <script src="/js/join.js"></script>
 </head>
@@ -24,54 +26,88 @@
 
             <!--thymeleaf-->
             <!--method="post" = postmaping-->
-            <form action="" th:action="@{~/members/join}" th:object="${memberSaveForm}" method="post"
-                  onsubmit="return checkStatus()" >
+            <form action="" th:action="@{~/members/join}"
+                  th:object="${memberSaveForm}" method="post"
+                  onsubmit="return checkStatus()">
 
                 <div id="formContainer"
                      class="flex flex-col gap-4 w-full px-4 mx-auto lg:w-1/2 lg:px-0">
                     <div class="join-item">
-                        <span class="hidden">아이디 : </span>
-                        <input type="text" name="loginId" th:field="*{loginId}" th:errorclass="field-error"
-                               placeholder="id"
-                               id="loginId"
-                               class="bg-gray-100 w-full rounded-full px-4 py-2"
-                               autocomplete="off" >
-                        <button type="button" onclick="checkDupleLoginId()"> 중복확인 </button>
-                        <span th:errors="*{loginId}" class="text-xs py-1 text-red-800 transition-opacity"></span>
+                        <div class="flex gap-1 items-center">
+                            <span class="hidden">아이디 : </span>
+                            <input type="text" name="loginId"
+                                   th:field="*{loginId}"
+                                   th:errorclass="field-error"
+                                   placeholder="id"
+                                   id="loginId"
+                                   class="bg-gray-100 w-full rounded-full px-4 py-2"
+                                   autocomplete="off">
+                            <button
+                                    type="button"
+                                    onclick="checkDupleLoginId()"
+                                    class="w-1/5 rounded-full bg-gray-900 text-white text-xs "
+                            >
+                                중복확인
+                            </button>
+                        </div>
+                        <span th:errors="*{loginId}"
+                              class="text-xs py-1 text-red-800 transition-opacity"></span>
                     </div>
                     <div class="join-item">
                         <span class="hidden">비밀번호 : </span>
-                        <input type="password" name="loginPw" th:fied="*{loginPw}" th:errorclass="field-error"
+                        <input type="password" name="loginPw"
+                               th:fied="*{loginPw}" th:errorclass="field-error"
                                placeholder="loginPw"
                                class="bg-gray-100 w-full rounded-full px-4 py-2"
                                autocomplete="off">
-                        <span th:errors="*{loginPw}" class="text-xs py-1 text-red-800"></span>
+                        <span th:errors="*{loginPw}"
+                              class="text-xs py-1 text-red-800"></span>
                     </div>
                     <div class="join-item">
                         <span class="hidden">이름 : </span>
-                        <input type="text" name="name" placeholder="name" th:fied="*{name}" th:errorclass="field-error"
+                        <input type="text" name="name" placeholder="name"
+                               th:fied="*{name}" th:errorclass="field-error"
                                class="bg-gray-100 w-full rounded-full px-4 py-2"
                                autocomplete="off">
-                        <span th:errors="*{name}" class="text-xs py-1 text-red-800"></span>
+                        <span th:errors="*{name}"
+                              class="text-xs py-1 text-red-800"></span>
                     </div>
                     <div class="join-item">
-                        <span class="hidden">닉네임 : </span>
-                        <input type="text" name="nickname" th:fied="*{nickname}" th:errorclass="field-error"
-                               placeholder="nickname"
-                               class="bg-gray-100 w-full rounded-full px-4 py-2" autocomplete="off">
-                        <span th:errors="*{nickname}" class="text-xs py-1 text-red-800"></span>
+                        <div class="flex gap-1 items-center">
+                            <span class="hidden">닉네임 : </span>
+                            <input type="text"
+                                   name="nickname"
+                                   th:fied="*{nickname}"
+                                   th:errorclass="field-error"
+                                   id="nickname"
+                                   placeholder="nickname"
+                                   class="bg-gray-100 w-full rounded-full px-4 py-2"
+                                   autocomplete="off">
+                            <button
+                                    type="button"
+                                    onclick="checkDupleNickname()"
+                                    class="w-1/5 rounded-full bg-gray-900 text-white text-xs "
+                            >
+                                중복확인
+                            </button>
+                        </div>
+                        <span th:errors="*{nickname}"
+                              class="text-xs py-1 text-red-800"></span>
                     </div>
                     <div class="join-item">
                         <span class="hidden">이메일: </span>
-                        <input type="email" name="email" th:fied="*{email}" th:errorclass="field-error"
+                        <input type="email" name="email" th:fied="*{email}"
+                               th:errorclass="field-error"
                                placeholder="email"
+                               id="email"
                                class="bg-gray-100 w-full rounded-full px-4 py-2">
-                        <span th:errors="*{email}" class="text-xs py-1 text-red-800"></span>
+                        <span th:errors="*{email}"
+                              class="text-xs py-1 text-red-800"></span>
                     </div>
 
                     <div class="flex align-center flex-row-reverse gap-4">
                         <button
-                            class="flex-1 rounded-full bg-gray-900 hover:bg-gray-800 text-center text-white py-2">
+                                class="flex-1 rounded-full bg-gray-900 hover:bg-gray-800 text-center text-white py-2">
                             회원가입
                         </button>
                         <a href="/"
