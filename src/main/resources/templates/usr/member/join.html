@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>회원가입</title>
     <script th:inline="javascript">
-        /*<!CDATA[*/
+        /*<![CDATA[*/
         let err_msg = [[ ${err_msg} ]] ;
 
         if(err_msg != null || err_msg != undefined ){
@@ -14,6 +14,7 @@
         }
         /*]]*/
     </script>
+    <script src="/js/join.js"></script>
 </head>
 <body>
 
@@ -31,8 +32,10 @@
                         <span class="hidden">아이디 : </span>
                         <input type="text" name="loginId" th:field="*{loginId}" th:errorclass="field-error"
                                placeholder="id"
+                               id="loginId"
                                class="bg-gray-100 w-full rounded-full px-4 py-2"
                                autocomplete="off" >
+                        <button type="button" onclick="checkDupleLoginId()"> 중복확인 </button>
                         <span th:errors="*{loginId}" class="text-xs py-1 text-red-800 transition-opacity"></span>
                     </div>
                     <div class="join-item">
