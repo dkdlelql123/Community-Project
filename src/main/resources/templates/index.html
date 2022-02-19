@@ -17,11 +17,6 @@
     <div class="container">
         <div class="main">
 
-            <!--            <div th:each="board:${boards}">-->
-            <!--                <div th:text="${board.name}">게시판 제목</div>-->
-
-            <!--            </div>-->
-
             <div id="accordion-collapse" data-accordion="collapse">
                 <div class="flex items-center border border-top-1 border-gray-100">
                     <h2 th:each="board:${boards}"
@@ -29,7 +24,7 @@
                         class="inline-flex flex-1 items-center text-center"
                     >
                         <button type="button"
-                                th:class="'flex flex-1 justify-center py-2 font-medium ' + ${board.id == 1 ? 'text-gray-900 bg-gray-100 hover:bg-gray-100' : 'text-gray-500 hover:bg-gray-100' }"
+                                th:class="'flex flex-1 justify-center py-2 font-medium  hover:bg-gray-100 ' + ${board.id == 1 ? 'bg-gray-100' : 'text-gray-500' }"
                                 th:data-accordion-target="'#accordion-collapse-body-' +${board.id}"
                                 th:attr="aria-expanded=${board.id == 1 ? 'true' : 'false'}"
                                 th:aria-controls="'accordion-collapse-body-' + ${board.id}">
@@ -50,14 +45,19 @@
 
                 <div th:each="board:${boards}"
                      th:id="'accordion-collapse-body-' + ${board.id}"
-                     th:class="${board.id == 1 ? '' : 'hidden'}"
-                     th:aria-labelledby="'accordion-collapse-heading-' + ${board.id}">
-                    <div th:each="article : ${board.articleListDTO}" class="p-4 flex flex-col gap-1">
+                     th:class="'flex flex-wrap gap-1 min-h-screen justify-center items-start content-start '+ ${board.id == 1 ? '' : 'hidden'}"
+                     th:aria-labelledby="'accordion-collapse-heading-' + ${board.id}"
+                >
+                    <div
+                        th:each="article : ${board.articleListDTO}"
+                        class="p-2 pb-4 inline-flex flex-col gap-1 justify-between"
+                        style="width:49%"
+                    >
                         <div class="flex items-center justify-center bg-gray-400 rounded py-8">
-                            images
+                            이미지를 넣을 수 있을까요...
                         </div>
                         <h2 th:text="${article.title}" class="text-gray-600">
-                            게시글 제목
+                            
                         </h2>
                         <div class="text-xs font-thin text-gray-400 flex gap-1">
                             <span th:text="${article.nickname}"></span>
