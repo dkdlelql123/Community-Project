@@ -93,8 +93,8 @@ public class DataInit {
                   for (int a = 0; a < 3; a++) {
                     count++;
                     Article article = Article.createArticle(
-                            count +"번째 게시물입니다" ,
-                            "아 정말 정말 백수가 적성에 맞습니다 ^^"
+                            boardList.get(j).getName() + "이고 총 게시물 중에서 " + count +"번째 게시물" ,
+                            "게시물 내용임"
                     );
                     article.setMember(user);
                     article.setBoard(boardList.get(j));

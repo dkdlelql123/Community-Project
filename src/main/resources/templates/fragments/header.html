@@ -5,24 +5,22 @@
     <meta charset="UTF-8">
 </head>
 <header th:fragment="headerFragment">
-    <div class="header p-4 pb-2">
+    <div class="header p-4">
         <nav class="flex align-center justify-between">
             <ul>
                 <a href="/"
-                   class="inline-flex border-b-2 border-t border-t-2 border-gray-900 font-bold transition-all py-1 px-1 hover:px-2">
+                   class="inline-flex border-b-2 border-t border-t-2 border-gray-900 text-gray-900 font-bold transition-all py-1 px-1 hover:px-2">
                     <span>내일부터 다이어트</span>
                 </a>
             </ul>
 
             <ul class="flex items-center">
-                <li sec:authorize="isAnonymous()" class="space-x-2 > *">
-                    <a class="mr-4" th:href="@{~/members/login}">로그인</a>
+                <li sec:authorize="isAnonymous()" class="text-sm text-gray-500 flex gap-2 items-center">
+                    <a th:href="@{~/members/login}">로그인</a>
                     <a th:href="@{~/members/join}">회원가입</a>
                 </li>
 
                 <li sec:authorize="isAuthenticated()">
-                    <!-- principal에 회원이 담겨진다. -->
-                    <!-- principal username 불러오기  -->
                     <button id="dropdownInformationButton"
                             data-dropdown-toggle="dropdownInformation"
                             class="text-sm text-center inline-flex"
