@@ -100,4 +100,12 @@ public class ArticleService {
         Article findArticle = getById(id);
         articleRepository.delete(findArticle);
     }
+
+    // hit 증가
+    @Transactional
+    public void hitUp(Long id){
+        Article findArticle = getById(id);
+
+        findArticle.hitUp();
+    }
 }

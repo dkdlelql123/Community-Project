@@ -25,8 +25,6 @@ public class Article {
     //여기서부터 회원 연결
     // ManyToOne ?
     // fetch = FetchType.LAZY ?
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
@@ -38,9 +36,10 @@ public class Article {
     private LocalDateTime regDate = LocalDateTime.now();
     private LocalDateTime updateDate = LocalDateTime.now();
 
+    private int hit = 0;
 
     // 생성 메소드
-    public static Article createArticle( String title, String body ) {
+    public static Article createArticle( String title, String body) {
         Article article = new Article();
 
         article.title = title;
@@ -67,5 +66,10 @@ public class Article {
     public void setBoard(Board board){
         this.board = board;
         board.getArticles().add(this);
+    }
+
+    //
+    public void hitUp(){
+        this.hit++;
     }
 }

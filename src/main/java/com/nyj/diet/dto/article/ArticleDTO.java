@@ -22,6 +22,8 @@ public class ArticleDTO {
     private LocalDateTime reg_date;
     private LocalDateTime update_date;
 
+    private int hit;
+
     public ArticleDTO(Article article){
         this.id = article.getId();
         this.title = article.getTitle();
@@ -35,5 +37,7 @@ public class ArticleDTO {
 
         this.reg_date=article.getRegDate();
         this.update_date = article.getUpdateDate();
+
+        this.hit = article.getHit();
     }
 }

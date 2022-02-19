@@ -48,24 +48,29 @@
                      th:aria-labelledby="'accordion-collapse-heading-' + ${board.id}"
                 >
                     <div
-                        th:each="article : ${board.articleListDTO}"
-                        class="p-2 pb-4 inline-flex flex-col gap-1 justify-between"
-                        style="width:49%"
+                            th:each="article : ${board.articleListDTO}"
+                            class="p-2 pb-4 inline-flex flex-col gap-1 justify-between"
+                            style="width:49%"
                     >
 
                         <a
-                            th:href="@{~/articles/} + ${article.id}"
-                            class="flex items-center justify-center bg-gray-400 rounded py-8"
+                                th:href="@{~/articles/} + ${article.id}"
+                                class="flex items-center justify-center bg-gray-400 rounded py-8"
                         >이미지를 넣을 수 있을까요...</a>
-                        <h2 class="text-gray-600 text-sm text-gray-900">
-                            <a th:href="@{~/articles/} + ${article.id}"
-                               th:text="${article.title}"
-                            >게시글 제목</a>
-                        </h2>
+
+                        <a th:href="@{~/articles/} + ${article.id}"
+                           class="text-gray-600 text-sm text-gray-900">
+                            <span th:text="${article.title}">게시글 제목</span>
+                        </a>
+
                         <div class="text-xs font-thin text-gray-400 flex gap-1">
                             <span th:text="${article.nickname}"></span>
                             <span>|</span>
                             <span th:text="${#temporals.format(article.reg_date, 'yy-MM-dd hh:mm')}">게시글 작성일자</span>
+                            <span>|</span>
+                            <div>
+                                <span th:text="${article.hit}"></span>번 읽음
+                            </div>
                         </div>
                     </div>
                 </div>

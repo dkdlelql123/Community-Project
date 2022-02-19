@@ -171,10 +171,15 @@ public class ArticleController {
     public String showDetail(Model model, @PathVariable(name = "id") Long id){
 
         try {
+            articleService.hitUp(id);
             ArticleDTO findArticle = articleService.getArticle(id);
+
             model.addAttribute("article", findArticle);
+
             return "usr/article/detail";
+
         } catch (Exception e){
+
             return "redirect:/";
         }
 

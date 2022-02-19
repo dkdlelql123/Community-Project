@@ -42,6 +42,11 @@
                                         class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
                                         제목
                                     </th>
+
+                                    <th scope="col"
+                                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-white uppercase dark:text-gray-400">
+                                        조회수
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -49,16 +54,20 @@
                                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                     <td th:text="${article.boardName}"
                                         class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-
                                     </td>
                                     <td th:text="${article.id}" class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-
+                                        article.id
                                     </td>
 
                                     <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
                                         <a th:href="@{~/articles/} + ${article.id}">
-                                            <div th:text="${article.title}"></div>
+                                            <span th:text="${article.title}"></span>
                                         </a>
+                                    </td>
+
+
+                                    <td th:text="${article.hit}" class="py-4 px-2 text-sm text-gray-500 dark:text-gray-400">
+                                        article.hit
                                     </td>
                                 </tr>
                                 </tbody>

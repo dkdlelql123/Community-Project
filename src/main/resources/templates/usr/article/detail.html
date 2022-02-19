@@ -23,6 +23,8 @@
                     <span th:text="${article.authorName}"></span>
                     &#124;
                     <span th:text="${#temporals.format(article.update_date, 'yyyy-MM-dd')}"></span>
+                    &#124;
+                    <span th:text="${article.hit}"></span>
                 </div>
             </div>
 
