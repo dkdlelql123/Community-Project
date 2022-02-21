@@ -90,7 +90,7 @@ public class DataInit {
                 memberRepository.save(user);
 
                 for (int j = 0; j < 3; j++) {
-                  for (int a = 0; a < 3; a++) {
+                  for (int a = 0; a < 7; a++) {
                     count++;
                     Article article = Article.createArticle(
                             boardList.get(j).getName() + "이고 총 게시물 중에서 " + count +"번째 게시물" ,

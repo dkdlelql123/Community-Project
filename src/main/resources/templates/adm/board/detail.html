@@ -45,7 +45,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="article : ${board.articleListDTO}"
+                <tr th:each="article : ${articles}"
                     class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                  <td th:text="${article.id}"
                       class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"></td>
@@ -63,6 +63,18 @@
             </div>
           </div>
         </div>
+      </div>
+
+
+      <div class="pageContainer">
+        <th:block th:each="i : ${#numbers.sequence(1, maxPage)}">
+          <a th:href="@{~/boards/} + ${board.id} + @{?page=} + ${i}"
+             th:class="'pageLink ' + ${i == currentPage ? 'text-red-900' : 'text-gray-900'} "
+             th:text="${i}"
+          >
+
+          </a>
+        </th:block>
       </div>
 
     </div>
