@@ -5,6 +5,7 @@ import com.nyj.diet.domain.Article;
 import com.nyj.diet.domain.Board;
 import com.nyj.diet.domain.Member;
 import com.nyj.diet.dto.article.ArticleDTO;
+import com.nyj.diet.dto.article.ArticleListDTO;
 import com.nyj.diet.dto.article.ArticleModifyForm;
 import com.nyj.diet.dto.article.ArticleSaveForm;
 import lombok.RequiredArgsConstructor;
@@ -110,13 +111,13 @@ public class ArticleService {
         findArticle.hitUp();
     }
 
-    public List<ArticleDTO> getHighViewedArticles(){
+    public List<ArticleListDTO> getHighViewedArticles(){
         List<Article> articleList = articleRepository.findAll(Sort.by(Sort.Order.desc("hit")));
 
-        List<ArticleDTO> articleDTOList = new ArrayList<>();
+        List<ArticleListDTO> articleDTOList = new ArrayList<>();
 
         for(Article article : articleList){
-            ArticleDTO articleDTO = new ArticleDTO(article);
+            ArticleListDTO articleDTO = new ArticleListDTO(article);
             articleDTOList.add(articleDTO);
         }
 

@@ -2,6 +2,7 @@ package com.nyj.diet.controller;
 
 import com.nyj.diet.dto.Board.BoardDTO;
 import com.nyj.diet.dto.article.ArticleDTO;
+import com.nyj.diet.dto.article.ArticleListDTO;
 import com.nyj.diet.service.ArticleService;
 import com.nyj.diet.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class HomeController {
         List<BoardDTO> boardList = boardService.getBoards();
         model.addAttribute("boards", boardList);
 
-        List<ArticleDTO> articleList = articleService.getHighViewedArticles();
+        List<ArticleListDTO> articleList = articleService.getHighViewedArticles();
         model.addAttribute("articles", articleList);
 
         return "index";

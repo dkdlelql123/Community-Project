@@ -54,8 +54,8 @@
                     >
 
                         <a
-                                th:href="@{~/articles/} + ${article.id}"
-                                class="flex items-center justify-center bg-gray-400 rounded py-8"
+                            th:href="@{~/articles/} + ${article.id}"
+                            class="flex items-center justify-center bg-gray-400 rounded py-8"
                         >이미지를 넣을 수 있을까요...</a>
 
                         <a th:href="@{~/articles/} + ${article.id}"
@@ -77,10 +77,30 @@
                 <div id="accordion-collapse-body-10"
                      class="hidden"
                      aria-labelledby="accordion-collapse-heading-10">
-                    <div class="p-4 min-h-screen">
-                        여기는 인기글!
-                        <div th:each="article : ${articles}">
-                        <span th:text="${article.title}">게시글 제목</span>
+                    <div class="flex flex-wrap gap-1 min-h-screen justify-center items-start content-start ">
+                        <div th:each="article : ${articles}"
+                             class="p-2 pb-4 inline-flex flex-col gap-1 justify-between"
+                             style="width:49%"
+                        >
+                            <a
+                                th:href="@{~/articles/} + ${article.id}"
+                                class="flex items-center justify-center bg-gray-400 rounded py-8"
+                            >이미지를 넣을 수 있을까요...</a>
+
+                            <a th:href="@{~/articles/} + ${article.id}"
+                               class="text-gray-600 text-sm text-gray-900">
+                                <span th:text="${article.title}">게시글 제목</span>
+                            </a>
+
+                            <div class="text-xs font-thin text-gray-400 flex gap-1">
+                                <span th:text="${article.nickname}"></span>
+                                <span>|</span>
+                                <span th:text="${#temporals.format(article.reg_date, 'yy-MM-dd hh:mm')}">게시글 작성일자</span>
+                                <span>|</span>
+                                <div>
+                                    <span th:text="${article.hit}"></span>번 읽음
+                                </div>
+                            </div>
                         </div>
                     </div>
 
