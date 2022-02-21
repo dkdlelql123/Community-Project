@@ -25,7 +25,8 @@ public class HomeController {
         model.addAttribute("boards", boardList);
 
         List<ArticleListDTO> articleList = articleService.getHighViewedArticles();
-        model.addAttribute("articles", articleList);
+        List<ArticleListDTO> topTenArticle = articleList.subList(0, 10);
+        model.addAttribute("articles", topTenArticle);
 
         return "index";
     }
