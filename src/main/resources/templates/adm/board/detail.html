@@ -18,7 +18,7 @@
       <!--   /boards/{id}/articles/write   -->
       <div class="flex justify-end">
         <a th:href="@{~/boards/} + ${board.id} + @{/articles/write}"
-           class="py-2 px-4 mt-2 mb-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+           class="py-2 px-4 mt-2 mb-2 text-sm font-medium text-gray-900 bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700">
           게시글 작성
         </a>
       </div>
@@ -28,33 +28,33 @@
           <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
             <div class="overflow-hidden shadow-md sm:rounded-lg">
               <table class="min-w-full">
-                <thead class="bg-gray-50 dark:bg-gray-700">
+                <thead class="bg-gray-50">
                 <tr>
                   <th scope="col"
-                      class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                      class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase   ">
                     게시글 번호
                   </th>
                   <th scope="col"
-                      class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                      class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase ">
                     게시글 이름
                   </th>
                   <th scope="col"
-                      class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                      class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase ">
                     게시글 작성자
                   </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="article : ${articles}"
-                    class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    class="bg-white border-b ">
                  <td th:text="${article.id}"
-                      class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white"></td>
-                  <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                      class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap"></td>
+                  <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap ">
                     <a th:href="@{~/articles/} + ${article.id}">
                       <span th:text="${article.title}"></span>
                     </a>
                   </td>
-                  <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                  <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap ">
                     <span th:text="${article.nickname}"></span>
                   </td>
                 </tr>
@@ -66,16 +66,31 @@
       </div>
 
 
-      <div class="pageContainer">
-        <th:block th:each="i : ${#numbers.sequence(1, maxPage)}">
-          <a th:href="@{~/boards/} + ${board.id} + @{?page=} + ${i}"
-             th:class="'pageLink ' + ${i == currentPage ? 'text-red-900' : 'text-gray-900'} "
-             th:text="${i}"
-          >
-
-          </a>
-        </th:block>
-      </div>
+      <nav class="pageContainer flex justify-center items-center py-8" aria-label="Page navigation example">
+        <ul class="inline-flex items-center -space-x-px">
+          <li th:unless="${ currentPage == 1 }">
+            <a th:href="@{~/boards/} + ${board.id} + @{?page=} + ${currentPage - 1}"
+               class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">
+              <span class="sr-only">Previous</span>
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+            </a>
+          </li>
+          <li th:each="i : ${#numbers.sequence(1, maxPage)}">
+            <a th:href="@{~/boards/} + ${board.id} + @{?page=} + ${i}"
+               th:text="${i}"
+               th:class="' py-2 px-3 leading-tight border '+ ${i == currentPage ? 'z-10 text-blue-600 bg-blue-50 border-blue-300 hover:bg-blue-100 hover:text-blue-700': 'text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700'}">
+              번호
+            </a>
+          </li>
+          <li th:unless="${ currentPage >= maxPage }">
+            <a th:href="@{~/boards/} + ${board.id} + @{?page=} + ${currentPage + 1}"
+               class="block py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
+              <span class="sr-only">Next</span>
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+            </a>
+          </li>
+        </ul>
+      </nav>
 
     </div>
   </div>

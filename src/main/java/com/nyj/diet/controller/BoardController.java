@@ -43,7 +43,7 @@ public class BoardController {
     @GetMapping("/boards/{id}")
     public String showBoardDetail(@PathVariable(name = "id")Long id, Model model, @RequestParam(name = "page", defaultValue = "1") int page ){
 
-        int size = 10;
+        int size = 5;
 
         try{
             BoardDTO boardDetail = boardService.getBoardDetail(id);
@@ -54,9 +54,12 @@ public class BoardController {
 
             // 첫번째, 마지막 index 찾기
             // 0, 10, 20, 30 ...
+            // 0, 5, 10
             int startIndex = (page - 1) * size;
             // 9, 19, 29,...
-            int lastIndex = startIndex + 9;
+            // 4, 9, 14
+            int lastIndex = (page * size) - 1;
+//            int lastIndex = startIndex + 9;
 
             // 마지막 페이지
             int lastPage = (int)Math.ceil( articleListDTO.size() / (double)size) ;
