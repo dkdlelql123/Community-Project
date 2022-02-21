@@ -8,6 +8,7 @@ import com.nyj.diet.dto.article.ArticleDTO;
 import com.nyj.diet.dto.article.ArticleModifyForm;
 import com.nyj.diet.dto.article.ArticleSaveForm;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -107,5 +108,19 @@ public class ArticleService {
         Article findArticle = getById(id);
 
         findArticle.hitUp();
+    }
+
+    public List<ArticleDTO> getHighViewedArticles(){
+        List<Article> articleList = articleRepository.findAll(Sort.by(Sort.Order.desc("hit")));
+
+        List<ArticleDTO> articleDTOList = new ArrayList<>();
+
+        for(Article article : articleList){
+            ArticleDTO articleDTO = new ArticleDTO(article);
+            articleDTOList.add(articleDTO);
+        }
+
+        return articleDTOList;
+
     }
 }

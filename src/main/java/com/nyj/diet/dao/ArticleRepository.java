@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
-//    @Query("SELECT * FROM article WHERE board_id = :board ORDER BY id DESC LIMIT 3")
-//    List<Article> findNewArticle(@Param("board") Long boardId);
 }
 
 

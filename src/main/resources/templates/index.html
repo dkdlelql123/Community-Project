@@ -79,7 +79,11 @@
                      aria-labelledby="accordion-collapse-heading-10">
                     <div class="p-4 min-h-screen">
                         여기는 인기글!
+                        <div th:each="article : ${articles}">
+                        <span th:text="${article.title}">게시글 제목</span>
+                        </div>
                     </div>
+
                 </div>
 
 
