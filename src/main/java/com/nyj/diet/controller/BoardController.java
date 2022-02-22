@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.lang.management.LockInfo;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -41,31 +42,34 @@ public class BoardController {
 
     // 상세
     @GetMapping("/boards/{id}")
-    public String showBoardDetail(@PathVariable(name = "id")Long id, Model model, @RequestParam(name = "page", defaultValue = "1") int page ){
+    public String showBoardDetail(@PathVariable(name = "id")Long id, Model model, @RequestParam(name = "page", defaultValue = "1") int page, @RequestParam(name = "search") String search ){
 
         int size = 5;
 
         try{
             BoardDTO boardDetail = boardService.getBoardDetail(id);
 
-            // 최신순으로 나오도록 하기
             List<ArticleListDTO> articleListDTO = boardDetail.getArticleListDTO();
+
+            List<ArticleListDTO> store = new ArrayList<>();
+
+//            if(search.trim().length() == 0 ) return "검색어를 입력해주세요.";
+
+            for(ArticleListDTO listDTO : articleListDTO){
+                if( listDTO.getTitle().contains(search) ) store.add(listDTO);
+            }
+
+            if(store.size() != 0) {
+                articleListDTO = store;
+            }
+
             Collections.reverse(articleListDTO);
 
-            // 첫번째, 마지막 index 찾기
-            // 0, 10, 20, 30 ...
-            // 0, 5, 10
             int startIndex = (page - 1) * size;
-            // 9, 19, 29,...
-            // 4, 9, 14
             int lastIndex = (page * size) - 1;
-//            int lastIndex = startIndex + 9;
-
-            // 마지막 페이지
             int lastPage = (int)Math.ceil( articleListDTO.size() / (double)size) ;
 
             if( page == lastPage ){
-                // 9보다 작을 수 있음
                 lastIndex = articleListDTO.size();
             } else if ( page > lastPage ){
                 return "redirect:/";
@@ -76,6 +80,10 @@ public class BoardController {
             // 페이지 자르기
             //[0 ~ 9] 10개를 보고싶으면 [0, 10]을 넣어준다.
             List<ArticleListDTO> pageInArticles = articleListDTO.subList(startIndex, lastIndex);
+
+            if( !search.equals("") && store.size() ==0 ){
+                pageInArticles = store;
+            }
 
             model.addAttribute("board", boardDetail);
             model.addAttribute("articles", pageInArticles);
