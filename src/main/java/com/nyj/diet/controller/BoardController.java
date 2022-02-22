@@ -28,38 +28,37 @@ public class BoardController {
     private final MemberService memberService;
 
 
-
     // 리스트
     @GetMapping("/boards")
-    public String showBoardList(Model model){
+    public String showBoardList(Model model) {
         List<Board> boardList = boardService.findAll();
-        
+
         // HTML로 보낼 수 있게 됨
         model.addAttribute("boardList", boardList);
-        
+
         return "adm/board/list";
     }
 
     // 상세
     @GetMapping("/boards/{id}")
-    public String showBoardDetail(@PathVariable(name = "id")Long id, Model model, @RequestParam(name = "page", defaultValue = "1") int page, @RequestParam(name = "search") String search ){
+    public String showBoardDetail(@PathVariable(name = "id") Long id, Model model, @RequestParam(name = "page", defaultValue = "1") int page, @RequestParam(name = "search", defaultValue = "") String search) {
 
         int size = 5;
 
-        try{
+        try {
             BoardDTO boardDetail = boardService.getBoardDetail(id);
 
             List<ArticleListDTO> articleListDTO = boardDetail.getArticleListDTO();
 
             List<ArticleListDTO> store = new ArrayList<>();
 
-//            if(search.trim().length() == 0 ) return "검색어를 입력해주세요.";
 
-            for(ArticleListDTO listDTO : articleListDTO){
-                if( listDTO.getTitle().contains(search) ) store.add(listDTO);
+            for (ArticleListDTO listDTO : articleListDTO) {
+                if (listDTO.getTitle().contains(search)) store.add(listDTO);
             }
 
-            if(store.size() != 0) {
+
+            if (store.size() != 0) {
                 articleListDTO = store;
             }
 
@@ -67,11 +66,11 @@ public class BoardController {
 
             int startIndex = (page - 1) * size;
             int lastIndex = (page * size) - 1;
-            int lastPage = (int)Math.ceil( articleListDTO.size() / (double)size) ;
+            int lastPage = (int) Math.ceil(articleListDTO.size() / (double) size);
 
-            if( page == lastPage ){
+            if (page == lastPage) {
                 lastIndex = articleListDTO.size();
-            } else if ( page > lastPage ){
+            } else if (page > lastPage) {
                 return "redirect:/";
             } else { //page < lastPage
                 lastIndex += 1; // subList를 사용할 때 9를 입력하면 8까지만 보여줌. 그래서 9를 보려면 10을 넣어줘야 한다.
@@ -81,7 +80,7 @@ public class BoardController {
             //[0 ~ 9] 10개를 보고싶으면 [0, 10]을 넣어준다.
             List<ArticleListDTO> pageInArticles = articleListDTO.subList(startIndex, lastIndex);
 
-            if( !search.equals("") && store.size() ==0 ){
+            if (!search.equals("") && store.size() == 0) {
                 pageInArticles = store;
             }
 
@@ -90,7 +89,7 @@ public class BoardController {
             model.addAttribute("maxPage", lastPage);
             model.addAttribute("currentPage", page);
 
-        } catch (Exception e){
+        } catch (Exception e) {
             return "redirect:/";
         }
 
