@@ -109,4 +109,8 @@ public class Member implements UserDetails {
     public boolean isEnabled() {
         return isEnabled;
     }
+
+    public void changePW(String pw){
+        this.loginPw = pw;
+    }
 }

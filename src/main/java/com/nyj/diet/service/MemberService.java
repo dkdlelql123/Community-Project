@@ -155,4 +155,10 @@ public class MemberService implements UserDetailsService {
     public boolean isDupleEmail(String email) {
         return memberRepository.existsByEmail(email);
     }
+
+    @Transactional
+    public void changeTempPw(String pw, Member member){
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        member.changePW(bCryptPasswordEncoder.encode(pw));
+    }
 }
