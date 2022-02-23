@@ -88,6 +88,7 @@ public class BoardController {
             model.addAttribute("articles", pageInArticles);
             model.addAttribute("maxPage", lastPage);
             model.addAttribute("currentPage", page);
+            model.addAttribute("search", search);
 
         } catch (Exception e) {
             return "redirect:/";

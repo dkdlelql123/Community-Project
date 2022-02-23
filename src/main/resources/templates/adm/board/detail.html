@@ -41,7 +41,7 @@
                         </div>
                         <input type="text"
                                name="search"
-                               th:value="${#request.getParameter('search')}"
+                               th:value="${search}"
                                id="table-search"
                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                placeholder="Search for items"
@@ -104,16 +104,14 @@
                 </div>
             </th:block>
 
-            <!---->
-            <th:block th:unless="${articles.size() == 0 }"
-                      th:with="searchKeyword=${#request.getParameter('search')}">
+            <th:block th:unless="${articles.size() == 0 }">
+<!-- th:with="searchKeyword=${#request.getParameter('search')}">-->
                 <nav class="pageContainer flex justify-center items-center py-8"
                      aria-label="Page navigation example">
                     <ul class="inline-flex items-center -space-x-px">
                         <li th:unless="${ currentPage == 1 }">
-                            <!--                            th:href="@{~/boards/} + ${board.id} + @{?page=} + ${currentPage - 1} + ${keyword ? '&keyword='+keyword : ''}"-->
-                            <a th:href="${searchKeyword}
-                            ? @{~/boards/} + ${board.id} + @{?page=} + ${currentPage - 1} + @{&search=} + ${searchKeyword}
+                            <a th:href="${search}
+                            ? @{~/boards/} + ${board.id} + @{?page=} + ${currentPage - 1} + @{&search=} + ${search}
                             : @{~/boards/} + ${board.id} + @{?page=} + ${currentPage - 1} "
                                class="block py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 ">
                                 <span class="sr-only">Previous</span>
@@ -127,8 +125,8 @@
                             </a>
                         </li>
                         <li th:each="i : ${#numbers.sequence(1, maxPage)}">
-                            <a th:href="${searchKeyword}
-                            ? @{~/boards/} + ${board.id} + @{?page=} + ${i} + @{&search=} + ${searchKeyword}
+                            <a th:href="${search}
+                            ? @{~/boards/} + ${board.id} + @{?page=} + ${i} + @{&search=} + ${search}
                             : @{~/boards/} + ${board.id} + @{?page=} + ${i} "
                                th:text="${i}"
                                th:class="' py-2 px-3 leading-tight border '+ ${i == currentPage ? 'z-10 text-blue-600 bg-blue-50 border-blue-300 hover:bg-blue-100 hover:text-blue-700': 'text-gray-500 bg-white border-gray-300 hover:bg-gray-100 hover:text-gray-700'}">
@@ -136,8 +134,8 @@
                             </a>
                         </li>
                         <li th:unless="${ currentPage >= maxPage }">
-                            <a th:href="${searchKeyword}
-                            ? @{~/boards/} + ${board.id} + @{?page=} + ${currentPage + 1} + @{&search=} + ${searchKeyword}
+                            <a th:href="${search}
+                            ? @{~/boards/} + ${board.id} + @{?page=} + ${currentPage + 1} + @{&search=} + ${search}
                             : @{~/boards/} + ${board.id} + @{?page=} + ${currentPage + 1}"
                                class="block py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
                                 <span class="sr-only">Next</span>
