@@ -134,4 +134,9 @@ public class MemberController {
 
         return "redirect:/members/modify/"+id;
     }
+
+    @GetMapping("/members/find/pw")
+    public String showFindPw(){
+        return "usr/member/findPw";
+    }
 }

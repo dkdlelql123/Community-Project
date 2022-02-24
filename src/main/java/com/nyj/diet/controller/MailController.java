@@ -17,11 +17,6 @@ public class MailController {
     private final MailService mailService;
     private final MemberService memberService;
 
-    @GetMapping("/members/find/pw")
-    public String showFindPw(){
-        return "usr/member/findPw";
-    }
-
     @ResponseBody
     @PostMapping("/mails/find/pw")
     public Boolean getForgotPassword(@RequestBody FindPassWordForm findPassWordForm){
