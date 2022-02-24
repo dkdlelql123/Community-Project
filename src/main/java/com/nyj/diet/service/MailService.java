@@ -31,7 +31,6 @@ public class MailService {
             MimeMessage mail = javaMailSender.createMimeMessage();
             MimeMessageHelper mailHelper = new MimeMessageHelper(mail, true, "UTF-8");
 
-
             mailHelper.setFrom(FROM_ADDRESS);
             mailHelper.setTo(findPassWordForm.getEmail());
             mailHelper.setSubject("임시 비밀번호를 보내드립니다.");

@@ -21,7 +21,7 @@ public class MailController {
     @PostMapping("/mails/find/pw")
     public Boolean getForgotPassword(@RequestBody FindPassWordForm findPassWordForm){
 
-        if ( !memberService.isDupleLoginId(findPassWordForm.getLoginId()) ){
+        if ( !memberService.isDupleLoginId(findPassWordForm.getLoginId())){
             return false;
         }
 
