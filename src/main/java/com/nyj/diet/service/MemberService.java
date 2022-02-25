@@ -156,9 +156,12 @@ public class MemberService implements UserDetailsService {
         return memberRepository.existsByEmail(email);
     }
 
+
     @Transactional
-    public void changeTempPw(String pw, Member member){
+    public void changeTempPw( String pw, Member member ){
+
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         member.changePW(bCryptPasswordEncoder.encode(pw));
+
     }
 }

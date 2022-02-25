@@ -21,9 +21,9 @@ public class MailService {
     public void sendMail(FindPassWordForm findPassWordForm){
 
         Member findMember = memberService.findByLoginId(findPassWordForm.getLoginId());
-        
+
         String uuid = UUID.randomUUID().toString();
-        String tempPw = uuid.substring(0,5); // 6자리
+        String tempPw = uuid.substring(0, 5);
 
         memberService.changeTempPw(tempPw, findMember);
 
@@ -34,11 +34,11 @@ public class MailService {
             mailHelper.setFrom(FROM_ADDRESS);
             mailHelper.setTo(findPassWordForm.getEmail());
             mailHelper.setSubject("임시 비밀번호를 보내드립니다.");
-            mailHelper.setText(findMember.getNickname()+"님의 임시 비밀번호는"+tempPw+"입니다. \r\n 로그인 후 비밀번호를 변경해주세요.");
+            mailHelper.setText(findMember.getNickname() + "님의 임시 비밀번호는" + tempPw + "입니다.\r\n 로그인 후 비밀번호를 변경해 주시기 바랍니다.");
 
             javaMailSender.send(mail);
 
-        } catch (Exception e){
+        }catch (Exception e){
             e.printStackTrace();
         }
 

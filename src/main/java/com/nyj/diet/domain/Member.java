@@ -71,6 +71,10 @@ public class Member implements UserDetails {
 
     }
 
+    public void changePW(String pw){
+        this.loginPw = pw;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
@@ -110,7 +114,4 @@ public class Member implements UserDetails {
         return isEnabled;
     }
 
-    public void changePW(String pw){
-        this.loginPw = pw;
-    }
 }
