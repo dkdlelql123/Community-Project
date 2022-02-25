@@ -137,8 +137,6 @@ public class MemberController {
 
     @GetMapping("/members/find/pw")
     public String showFindPw(){
-
         return "usr/member/findpw";
-
     }
 }

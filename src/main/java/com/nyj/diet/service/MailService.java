@@ -20,6 +20,7 @@ public class MailService {
 
     public void sendMail(FindPassWordForm findPassWordForm){
 
+
         Member findMember = memberService.findByLoginId(findPassWordForm.getLoginId());
 
         String uuid = UUID.randomUUID().toString();

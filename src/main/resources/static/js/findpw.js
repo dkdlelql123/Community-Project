@@ -13,34 +13,36 @@ async function findPw(e){
 
     if( loginId === null || loginId === "" ){
         alert("아이디를 입력해 주시기 바랍니다.");
+        return;
     }
 
     if( email === null || email === "" ){
-        alert("이메일을 입력해 주시기 바랍니다.")
+        alert("이메일을 입력해 주시기 바랍니다.");
+        return;
     }
 
     let data = {
-
         method : "POST",
         body: JSON.stringify(
-            {
-                loginId : loginId,
-                email : email,
-            }
+                {
+                    loginId : loginId,
+                    email : email,
+                }
         ),
         headers: {
-        'Content-Type' : 'application/json',
-        'X-CSRF-TOKEN' : token
+            'Content-Type' : 'application/json',
+            'X-CSRF-TOKEN' : token
         }
-    }
 
-    await fetch("http://localhost:8086/mails/find/pw", data)
-    .then(
-        (response) => {
-            return response.json();
-        }
-    )
-    .then(
+    };
+
+    await fetch(
+    "http://localhost:8086/mails/find/pw", data
+    ).then(
+         (response) => {
+                    return response.json();
+                }
+    ).then(
         (data) => {
 
             if( !data ){
@@ -51,12 +53,10 @@ async function findPw(e){
                 window.location.replace("http://localhost:8086/");
             }
         }
-    )
-    .catch(
+    ).catch(
         (error) => {
             console.log(error);
             alert("메일 발송에 실패하였습니다. 이메일 혹은 아이디를 확인하여 주시기 바랍니다.");
-
         }
     )
 
