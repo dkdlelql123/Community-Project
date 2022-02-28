@@ -15,13 +15,13 @@ public class MyPageDTO {
     private String nickname;
     private String name;
 
-    private List<ArticleDTO> articleDTO;
+    private List<ArticleDTO> articles;
 
     public MyPageDTO(Member member, List<ArticleDTO> articleList){
         this.loginId = member.getLoginId();
         this.nickname = member.getNickname();
         this.name = member.getName();
 
-        this.articleDTO = articleList;
+        this.articles = articleList;
     }
 }

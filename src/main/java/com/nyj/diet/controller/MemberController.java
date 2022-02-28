@@ -7,6 +7,7 @@ import com.nyj.diet.dto.member.MemberModifyForm;
 import com.nyj.diet.dto.member.MemberSaveForm;
 import com.nyj.diet.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -52,6 +53,22 @@ public class MemberController {
         CheckStatus checkStatus = new CheckStatus(isExists);
 
         return checkStatus;
+    }
+
+    //http메소드
+    @DeleteMapping("/members")
+    @ResponseBody
+    public boolean doDelete(@RequestBody String loginId, Principal principal){
+
+        if( !loginId.equals(principal.getName())){
+            return false;
+        }
+
+        SecurityContextHolder.clearContext();
+
+        memberService.deleteMember(loginId);
+
+        return true;
     }
 
 

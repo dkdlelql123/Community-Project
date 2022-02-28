@@ -164,4 +164,10 @@ public class MemberService implements UserDetailsService {
         member.changePW(bCryptPasswordEncoder.encode(pw));
 
     }
+
+    @Transactional
+    public void deleteMember(String loginId) {
+        Member member = findByLoginId(loginId);
+        memberRepository.delete(member);
+    }
 }

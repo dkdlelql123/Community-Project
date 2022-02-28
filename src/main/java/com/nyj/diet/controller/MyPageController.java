@@ -1,6 +1,7 @@
 package com.nyj.diet.controller;
 
 import com.nyj.diet.domain.Member;
+import com.nyj.diet.dto.article.ArticleListDTO;
 import com.nyj.diet.dto.member.MyPageDTO;
 import com.nyj.diet.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,8 @@ public class MyPageController {
 
         MyPageDTO myPageDTO = memberService.getMyPageDTO(principal.getName());
         model.addAttribute("member", myPageDTO);
+        model.addAttribute("loginMember", principal.getName());
+
 
         return "usr/member/mypage";
     }

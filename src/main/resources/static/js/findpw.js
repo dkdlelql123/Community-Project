@@ -45,7 +45,7 @@ async function findPw(e){
     progress.hidden = false;
 
     await fetch(
-    "http://localhost:8086/mails/find/pw", data
+        "http://localhost:8086/mails/find/pw", data
     ).then(
          (response) => {
                     return response.json();
