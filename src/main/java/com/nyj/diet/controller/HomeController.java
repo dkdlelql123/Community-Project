@@ -1,8 +1,6 @@
 package com.nyj.diet.controller;
 
-import com.nyj.diet.domain.Member;
 import com.nyj.diet.dto.Board.BoardDTO;
-import com.nyj.diet.dto.article.ArticleDTO;
 import com.nyj.diet.dto.article.ArticleListDTO;
 import com.nyj.diet.service.ArticleService;
 import com.nyj.diet.service.BoardService;

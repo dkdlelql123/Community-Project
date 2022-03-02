@@ -6,15 +6,12 @@ import com.nyj.diet.dao.MemberRepository;
 import com.nyj.diet.domain.Article;
 import com.nyj.diet.domain.Board;
 import com.nyj.diet.domain.Member;
-import com.nyj.diet.service.BoardService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 

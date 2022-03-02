@@ -1,4 +1,4 @@
-package com.nyj.diet.dto.domain;
+package com.nyj.diet.domain;
 
 import lombok.Getter;
 

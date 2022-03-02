@@ -1,7 +1,6 @@
 package com.nyj.diet.dto.article;
 
 import com.nyj.diet.domain.Article;
-import com.nyj.diet.domain.Member;
 import lombok.Data;
 
 import java.time.LocalDateTime;

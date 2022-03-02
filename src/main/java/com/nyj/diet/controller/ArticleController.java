@@ -1,9 +1,7 @@
 package com.nyj.diet.controller;
 
-import com.nyj.diet.domain.Article;
 import com.nyj.diet.domain.Board;
 import com.nyj.diet.domain.Member;
-import com.nyj.diet.dto.Board.BoardDTO;
 import com.nyj.diet.dto.article.ArticleDTO;
 import com.nyj.diet.dto.article.ArticleModifyForm;
 import com.nyj.diet.dto.article.ArticleSaveForm;

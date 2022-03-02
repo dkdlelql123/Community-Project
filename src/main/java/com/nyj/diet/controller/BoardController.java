@@ -1,22 +1,15 @@
 package com.nyj.diet.controller;
 
 import com.nyj.diet.domain.Board;
-import com.nyj.diet.domain.Member;
 import com.nyj.diet.dto.Board.BoardDTO;
-import com.nyj.diet.dto.Board.BoardModifyForm;
-import com.nyj.diet.dto.Board.BoardSaveForm;
 import com.nyj.diet.dto.article.ArticleListDTO;
 import com.nyj.diet.service.BoardService;
 import com.nyj.diet.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.management.LockInfo;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
