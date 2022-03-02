@@ -3,9 +3,9 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
 <head>
-    <meta id="_csrf" name="_csrf" th:content="${_csrf?.token}"/>
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
     <meta id="_csrf_header" name="_csrf_header"
-          th:content="${_csrf?.headerName}"/>
+          th:content="${_csrf.headerName}"/>
     <meta charset="UTF-8">
     <title>마이페이지</title>
 </head>
@@ -23,7 +23,7 @@
             <div class="flex justify-between items-center mt-1 mb-4">
                 <span class="text-gray-500 text-sm">회원 탈퇴하겠습니까?</span>
                 <span>
-                      <button type="button" th:attr="onclick=|removeMember('${logonMember}')|"  class="text-gray-500 text-sm">회원 탈퇴</button>
+                      <button type="button" th:attr="onclick=|removeMember('${loginMember}')|"  class="text-gray-500 text-sm">회원 탈퇴</button>
                 </span>
             </div>
 

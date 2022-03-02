@@ -1,4 +1,4 @@
-package com.nyj.diet.domain;
+package com.nyj.diet.dto.domain;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -10,6 +10,12 @@ import java.time.LocalDateTime;
 //어노테이션
 //db table 1:1연결
 //무분별한 객체 생성을 막기 위해? AccessLevel.PROTECTED
+
+// PROTECTED 사용 이유 ?
+// dto를 사용해야하는 이유
+// dao를 직접적으로 만지면 관련된 모든 코드들을 수정해야 함
+// PROTECTED
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -23,7 +29,6 @@ public class Article {
     private String body;
 
     //여기서부터 회원 연결
-    // ManyToOne ?
     // fetch = FetchType.LAZY ?
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")

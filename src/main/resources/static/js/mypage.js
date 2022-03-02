@@ -8,15 +8,11 @@ async function removeMember(loginId){
 
     let data = {
         method : "DELETE" ,
-        body: JSON.stringify(
-                {
-                    loginId : loginId
-                }
-        ),
+        body: loginId,
         headers : {
           "Content-Type" : "text/plain",
           "X-CSRF-TOKEN" : token
-        },
+        }
     };
 
    console.log(data)
@@ -25,21 +21,26 @@ async function removeMember(loginId){
         "http://localhost:8086/members", data
     ).then(
         (response) => {
-            return response.json();
+
+                console.log(response);
+                return response.json();
+
         }
     ).then(
         (data) => {
+            console.log(data);
             if( !data ){
-                console.log(data)
-                alert("탈퇴에 실패했습니다");
+                alert("탈퇴에 실패하였습니다. 다시 시도해 주시기 바랍니다.");
                 return;
             }
 
-            alert("성공적으로 탈퇴되었습니다");
-            window.location.replace("/");
+            alert("성공적으로 탈퇴되었습니다.");
+            window.location.replace("http://localhost:8086/");
         }
     ).catch(
-        (error) => { console.log(error) }
-    )
-
+         (error) => {
+             console.log(error)
+             alert("탈퇴에 실패하였습니다. 다시 시도해 주시기 바랍니다.")
+         }
+     )
 }

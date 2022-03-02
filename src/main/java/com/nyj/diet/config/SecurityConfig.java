@@ -22,10 +22,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         web.ignoring().mvcMatchers("/css/**", "/js/**", "/img/**", "/error/**", "/lib/**");
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
         http.authorizeRequests(authorize -> authorize
                         .mvcMatchers(
                                 "/members/join",
@@ -55,24 +53,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 )
 
                 .formLogin()
-                .loginPage("/members/login")
-                .loginProcessingUrl("/members/doLogin")
-                .usernameParameter("loginId")
-                .passwordParameter("loginPw")
-                .defaultSuccessUrl("/")
+                    .loginPage("/members/login")
+                    .loginProcessingUrl("/members/doLogin")
+                    .usernameParameter("loginId")
+                    .passwordParameter("loginPw")
+                    .defaultSuccessUrl("/")
                 .and()
                     .logout()
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
-                    .logoutSuccessUrl("/")
-                    .invalidateHttpSession(true)
-                    .deleteCookies("JSESSIONID")
-                    .clearAuthentication(true)
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/members/logout"))
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .clearAuthentication(true)
                 .and()
                     .sessionManagement()
-                    .invalidSessionUrl("/")
-                    .maximumSessions(1)
-                    .maxSessionsPreventsLogin(true)
-                    .expiredUrl("/");
+                        .invalidSessionUrl("/")
+                        .maximumSessions(1)
+                        .maxSessionsPreventsLogin(true)
+                        .expiredUrl("/");
     }
 
     @Bean

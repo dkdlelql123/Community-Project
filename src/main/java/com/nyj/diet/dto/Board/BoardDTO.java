@@ -1,8 +1,7 @@
 package com.nyj.diet.dto.Board;
 
-import com.nyj.diet.domain.Board;
+import com.nyj.diet.dto.domain.Board;
 import com.nyj.diet.dto.article.ArticleListDTO;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.time.LocalDateTime;

@@ -4,9 +4,9 @@
       layout:decorate="~{layouts/layout}">
 <head>
     <meta charset="UTF-8">
-    <meta id="_csrf" name="_csrf" th:content="${_csrf?.token}"/>
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
     <meta id="_csrf_header" name="_csrf_header"
-          th:content="${_csrf?.headerName}"/>
+          th:content="${_csrf.headerName}"/>
     <title>비밀번호 찾기</title>
 </head>
 <body>

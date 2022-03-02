@@ -1,6 +1,6 @@
 package com.nyj.diet.dto.Board;
 
-import com.nyj.diet.domain.Board;
+import com.nyj.diet.dto.domain.Board;
 import lombok.Data;
 
 @Data
