@@ -12,14 +12,14 @@
 </head>
 <body class="flex justify-center">
 
-<div class="flex flex-col flex-1 bg-white min-h-screen items-stretch"
+<div class="flex flex-col flex-1 bg-white h-screen items-stretch"
      style="max-width:680px !important">
 
     <!-- header fragment -->
     <header th:replace="fragments/header :: headerFragment"></header>
 
     <!-- layout -->
-    <div layout:fragment="content"></div>
+    <div layout:fragment="content" class="flex-grow"></div>
 
 
     <!-- footer fragment -->
@@ -27,8 +27,7 @@
 
 </div>
 
-<!--<script src="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.bundle.js"></script>-->
-<!-- main toggle 때문에 밑에꺼로 변경 -->
-<script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>
+    <!--<script src="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.bundle.js"></script>-->
+    <script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>
 </body>
 </html>

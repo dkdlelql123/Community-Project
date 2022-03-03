@@ -4,28 +4,30 @@
 <head>
     <meta charset="UTF-8">
 </head>
-<footer th:fragment="footerFragment" class="flex flex-col gap-2">
-    <ul class="flex gap-2">
-        <li>
-            <a href="/">About</a>
-        </li>
-        <li>
-            <a href="/">Contcat</a>
-        </li>
-    </ul>
+<footer th:fragment="footerFragment" class="flex flex-col gap-2 p-4 py-8">
+    <div class="flex flex-col md:flex-row md:justify-between items-center">
+        <ul class="flex gap-2">
+            <li>
+                <a href="/" class="text-sm text-gray-600 hover:text-gray-900">About</a>
+            </li>
+        </ul>
 
-    <ul class="flex gap-2">
-        <li>
-            <a href="/">GitHub</a>
-        </li>
-        <li>
-            <a href="/">Blog</a>
-        </li>
-    </ul>
+        <ul class="flex gap-2">
+            <li>
+                <a href="https://github.com/dkdlelql123" class="text-sm text-gray-600 hover:text-gray-900">GitHub</a>
+            </li>
+            <li>
+                <a href="https://wiken.io/b/3149" class="text-sm text-gray-600 hover:text-gray-900">Wiken</a>
+            </li>
+            <li>
+                <a href="https://blog.naver.com/dkdlelql123" class="text-sm text-gray-600 hover:text-gray-900">Blog</a>
+            </li>
+        </ul>
+    </div>
 
-    <span>
+    <span class="text-sm text-gray-600 text-center md:text-left">
         ©️2022
-        <a href="/" class="underline">dkdlelql123</a>. ALL Rights Reserved.
+        <a href="mailto:dkdlelql123@naver.com" class="underline">dkdlelql123</a>. ALL Rights Reserved.
     </span>
 </footer>
 
