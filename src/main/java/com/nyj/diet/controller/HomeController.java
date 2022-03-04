@@ -1,5 +1,6 @@
 package com.nyj.diet.controller;
 
+import com.nyj.diet.domain.Member;
 import com.nyj.diet.dto.Board.BoardDTO;
 import com.nyj.diet.dto.article.ArticleListDTO;
 import com.nyj.diet.service.ArticleService;
@@ -29,6 +30,12 @@ public class HomeController {
         List<ArticleListDTO> articleList = articleService.getHighViewedArticles();
         List<ArticleListDTO> topTenArticle = articleList.subList(0, 10);
         model.addAttribute("articles", topTenArticle);
+
+        if(principal != null){
+            String memberId = principal.getName();
+            Member findMember = memberService.findByLoginId(memberId);
+            model.addAttribute("member", findMember );
+        }
 
         return "index";
     }
