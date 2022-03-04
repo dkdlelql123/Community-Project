@@ -6,52 +6,124 @@
 <head>
     <meta charset="UTF-8">
     <title>내일부터 다이어트 🍔🍕🍿</title>
-    <!--    <link href="https://cdn.jsdelivr.net/npm/daisyui@1.25.4/dist/full.css"-->
-    <!--          rel="stylesheet" type="text/css"/>-->
-    <!--    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css"-->
-    <!--          rel="stylesheet" type="text/css"/>-->
 </head>
 <body>
 <div layout:fragment="content">
     <div class="container">
         <div class="main">
+            <!-- Carousel -->
+            <div id="default-carousel" data-carousel="slide" class="relative">
+                <!-- Carousel wrapper -->
+                <div class="overflow-hidden relative h-32 sm:h-40 xl:h-40 ">
 
+                    <!-- Item 1 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+                        <img src="https://images.unsplash.com/photo-1561043433-aaf687c4cf04?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                             class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2"
+                             alt="unsplash">
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item="">
+                        <img src="https://images.unsplash.com/photo-1592334628151-36869c12ad0e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=868&q=80"
+                             class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2"
+                             alt="unsplash">
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item="">
+                        <img src="https://images.unsplash.com/photo-1566568531155-07244e00963d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                             class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2"
+                             alt="unsplash">
+                    </div>
+
+
+                    <!-- Item 4 -->
+                    <div class="hidden duration-700 ease-in-out" data-carousel-item="">
+                        <img src="https://images.unsplash.com/photo-1617343251257-b5d709934ddd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                             class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2"
+                             alt="unsplash">
+                    </div>
+
+                </div>
+
+                <!-- Slider indicators -->
+                <div class="flex absolute bottom-5 left-1/2 space-x-3 -translate-x-1/2">
+                    <button type="button" class="w-2 h-2 bg-white rounded-full dark:bg-gray-800" aria-current="true" aria-label="Slide 1" data-carousel-slide-to="0"></button>
+                    <button type="button" class="w-2 h-2 rounded-full bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800" aria-current="false" aria-label="Slide 2" data-carousel-slide-to="1"></button>
+                    <button type="button" class="w-2 h-2 rounded-full bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800" aria-current="false" aria-label="Slide 3" data-carousel-slide-to="2"></button>
+                    <button type="button" class="w-2 h-2 rounded-full bg-white/50 dark:bg-gray-800/50 hover:bg-white dark:hover:bg-gray-800" aria-current="false" aria-label="Slide 4" data-carousel-slide-to="3"></button>
+                </div>
+
+            </div>
+
+            <!-- 아코디언 -->
             <div id="accordion-collapse" data-accordion="collapse">
-                <div class="flex items-center border border-top-1 border-gray-100">
+                <div class="flex items-center border border-top-0 border-gray-100">
+                    <h2 id="accordion-collapse-heading-10"
+                        class="inline-flex flex-1 items-center text-center">
+                        <button type="button"
+                                class="flex flex-1 justify-center py-2 font-medium bg-gray-100 hover:bg-gray-100"
+                                data-accordion-target="#accordion-collapse-body-10"
+                                aria-expanded='true'
+                                aria-controls="accordion-collapse-body-10">
+                            <div>인기</div>
+                        </button>
+                    </h2>
+
                     <h2 th:each="board:${boards}"
                         th:id="'accordion-collapse-heading-' + ${board.id}"
                         class="inline-flex flex-1 items-center text-center"
                     >
                         <button type="button"
-                                th:class="'flex flex-1 justify-center py-2 font-medium  hover:bg-gray-100 ' + ${board.id == 1 ? 'bg-gray-100' : 'text-gray-500' }"
+                                class="flex flex-1 justify-center py-2 font-medium  hover:bg-gray-100 text-gray-500"
                                 th:data-accordion-target="'#accordion-collapse-body-' +${board.id}"
-                                th:attr="aria-expanded=${board.id == 1 ? 'true' : 'false'}"
+                                aria-expanded='false'
                                 th:aria-controls="'accordion-collapse-body-' + ${board.id}">
                             <div th:text="${board.name}">게시판 제목</div>
                         </button>
                     </h2>
-                    <h2 id="accordion-collapse-heading-10"
-                        class="inline-flex flex-1 items-center text-center">
-                        <button type="button"
-                                class="flex flex-1 justify-center py-2 font-medium text-gray-500 hover:bg-gray-100"
-                                data-accordion-target="#accordion-collapse-body-10"
-                                aria-expanded='false'
-                                aria-controls="accordion-collapse-body-10">
-                            <div>인기</div>
-                        </button>
-                    </h2>
                 </div>
 
+
+                <div id="accordion-collapse-body-10"
+                     aria-labelledby="accordion-collapse-heading-10">
+                    <div class="flex flex-wrap gap-1 min-h-screen justify-center items-start content-start ">
+                        <div th:each="article : ${articles}"
+                             class="p-2 pb-4 inline-flex flex-col gap-1 justify-between"
+                             style="width:49%"
+                        >
+                            <a
+                                    th:href="@{~/articles/} + ${article.id}"
+                                    class="flex items-center justify-center bg-gray-400 rounded py-8"
+                            >이미지를 업로드 할 수 있을까요...</a>
+
+                            <a th:href="@{~/articles/} + ${article.id}"
+                               class="text-gray-600 text-sm text-gray-900">
+                                <span th:text="${article.title}">게시글 제목</span>
+                            </a>
+
+                            <div class="text-xs font-thin text-gray-400 flex gap-1">
+                                <span th:text="${article.nickname}"></span>
+                                <span>|</span>
+                                <span th:text="${#temporals.format(article.reg_date, 'yy-MM-dd hh:mm')}">게시글 작성일자</span>
+                                <span>|</span>
+                                <div>
+                                    <span th:text="${article.hit}"></span>번 읽음
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div th:each="board:${boards}"
                      th:id="'accordion-collapse-body-' + ${board.id}"
-                     th:class="'flex flex-wrap gap-1 min-h-screen justify-center items-start content-start '+ ${board.id == 1 ? '' : 'hidden'}"
+                     class="flex flex-wrap gap-1 min-h-screen justify-center items-start content-start hidden"
                      th:aria-labelledby="'accordion-collapse-heading-' + ${board.id}"
                 >
                     <div
                             th:each="article : ${board.articleListDTO}"
                             class="p-2 pb-4 inline-flex flex-col gap-1 justify-between"
-                            style="width:49%"
-                    >
+                            style="width:49%" >
 
                         <a
                             th:href="@{~/articles/} + ${article.id}"
@@ -74,42 +146,9 @@
                         </div>
                     </div>
                 </div>
-                <div id="accordion-collapse-body-10"
-                     class="hidden"
-                     aria-labelledby="accordion-collapse-heading-10">
-                    <div class="flex flex-wrap gap-1 min-h-screen justify-center items-start content-start ">
-                        <div th:each="article : ${articles}"
-                             class="p-2 pb-4 inline-flex flex-col gap-1 justify-between"
-                             style="width:49%"
-                        >
-                            <a
-                                th:href="@{~/articles/} + ${article.id}"
-                                class="flex items-center justify-center bg-gray-400 rounded py-8"
-                            >이미지를 업로드 할 수 있을까요...</a>
-
-                            <a th:href="@{~/articles/} + ${article.id}"
-                               class="text-gray-600 text-sm text-gray-900">
-                                <span th:text="${article.title}">게시글 제목</span>
-                            </a>
-
-                            <div class="text-xs font-thin text-gray-400 flex gap-1">
-                                <span th:text="${article.nickname}"></span>
-                                <span>|</span>
-                                <span th:text="${#temporals.format(article.reg_date, 'yy-MM-dd hh:mm')}">게시글 작성일자</span>
-                                <span>|</span>
-                                <div>
-                                    <span th:text="${article.hit}"></span>번 읽음
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
 
 
             </div>
-
-
         </div>
     </div>
 </div>
