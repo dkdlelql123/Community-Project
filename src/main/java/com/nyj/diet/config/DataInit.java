@@ -58,8 +58,11 @@ public class DataInit {
             boardList.add("식단기록");
             boardList.add("운동기록");
             boardList.add("내일부터");
+            boardList.add("같이해요");
+            boardList.add("추천해요");
+            boardList.add("자유롭게");
 
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < boardList.size() ; i++) {
                 Board board = Board.createBoard(
                         boardList.get(i),
                         i+"번째 게시판입니다",
