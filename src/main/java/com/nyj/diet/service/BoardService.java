@@ -139,7 +139,7 @@ public class BoardService {
 
         for (Board board : boards){
             Long id = board.getId();
-            boardIdList.add(id);
+            if(id <= 3) boardIdList.add(id);
         }
 
         for (Long boardId : boardIdList){
