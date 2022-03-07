@@ -50,6 +50,11 @@
                                 관리자페이지
                                 </a>
                             </li>
+                            <li>
+                                <a th:href="@{~/members/modify/} + ${#authentication.name} " class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
+                                    정보수정
+                                </a>
+                            </li>
                         </ul>
                         <div class="py-1">
                             <a href="/members/logout"

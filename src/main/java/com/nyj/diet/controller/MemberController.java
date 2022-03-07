@@ -114,10 +114,10 @@ public class MemberController {
     }
 
     // 회원정보 수정
-    @GetMapping("/members/modify/{id}")
-    public String showModify(@PathVariable(name="id") Long id, Model model, Principal principal) {
+    @GetMapping("/members/modify/{loginId}")
+    public String showModify(@PathVariable(name="loginId") String loginId, Model model, Principal principal) {
 
-        Member findMember = memberService.findById(id);
+        Member findMember = memberService.findByLoginId(loginId);
 
         if(!findMember.getLoginId().equals(principal.getName())){
             return "redirect:/";
@@ -127,15 +127,15 @@ public class MemberController {
         return "usr/member/modify";
     }
 
-    @PostMapping("/members/modify/{id}")
-    public String doModify(@PathVariable(name="id") Long id, @Validated MemberModifyForm memberModifyForm, BindingResult bindingResult, Model model, Principal principal) {
+    @PostMapping("/members/modify/{loginId}")
+    public String doModify(@PathVariable(name="loginId") String loginId, @Validated MemberModifyForm memberModifyForm, BindingResult bindingResult, Model model, Principal principal) {
 
         // validated > error 시 bindingResult
         if(bindingResult.hasErrors()){
             return "usr/member/modify";
         }
 
-        Member findMember = memberService.findById(id);
+        Member findMember = memberService.findByLoginId(loginId);
 
         if( !principal.getName().equals(findMember.getLoginId())){
             return "redirect:/";
@@ -149,7 +149,7 @@ public class MemberController {
             return "redirect:/";
         }
 
-        return "redirect:/members/modify/"+id;
+        return "redirect:/members/modify/"+loginId;
     }
 
     @GetMapping("/members/find/pw")
