@@ -42,14 +42,11 @@ public class BoardController {
             BoardDTO boardDetail = boardService.getBoardDetail(id);
 
             List<ArticleListDTO> articleListDTO = boardDetail.getArticleListDTO();
-
             List<ArticleListDTO> store = new ArrayList<>();
-
-
+            
             for (ArticleListDTO listDTO : articleListDTO) {
                 if (listDTO.getTitle().contains(search)) store.add(listDTO);
             }
-
 
             if (store.size() != 0) {
                 articleListDTO = store;

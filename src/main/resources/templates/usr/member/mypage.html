@@ -17,7 +17,7 @@
 
             <div class="flex">
                 <span th:text="${member.nickname}" class="flex text-lg font-bold" ></span>
-                <span  class="flex text-lg " >님 반갑습니다 :)</span>
+                <span  class="flex text-xl " >님 반갑습니다 :)</span>
             </div>
 
             <div class="flex justify-between items-center mt-1 mb-4">
@@ -32,22 +32,22 @@
                     <div class="inline-block py-2 min-w-full">
                         <div class="overflow-hidden shadow-md sm:rounded-lg">
                             <table class="min-w-full">
-                                <thead class="bg-gray-100 dark:bg-gray-700">
+                                <thead class="bg-gray-100">
                                 <tr>
                                     <th scope="col"
-                                        class="py-2 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                class="py-2 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase ">
                                         번호
                                     </th>
                                     <th scope="col"
-                                        class="py-2 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        class="py-2 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase ">
                                         개시판이름
                                     </th>
                                     <th scope="col"
-                                        class="py-2 px-6 text-xs tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        class="py-2 px-6 text-xs tracking-wider text-left text-gray-700 uppercase ">
                                         제목
                                     </th>
                                     <th scope="col"
-                                        class="py-2 px-6 text-xs tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                        class="py-2 px-6 text-xs tracking-wider text-left text-gray-700 uppercase ">
                                         작성일
                                     </th>
                                     <th scope="col" class="relative py-2 px-6">
@@ -57,22 +57,22 @@
                                 </thead>
                                 <tbody>
                                 <tr th:each="article : ${member.articles}"
-                                    class="border-b odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
+                                    class="border-b odd:bg-white even:bg-gray-50">
                                     <td th:text="${article.id}"
-                                        class="py-2 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        class="py-2 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                         id
                                     </td>
                                     <td th:text="${article.boardName}"
-                                        class="py-2 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                        class="py-2 px-6 text-sm text-gray-500 whitespace-nowrap ">
                                         boardname
                                     </td>
-                                    <td class="py-2 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                    <td class="py-2 px-6 text-sm text-gray-500 whitespace-nowrap ">
                                         <a th:href="@{~/articles/} + ${article.id}">
                                             <div th:text="${article.title}" ></div>
                                         </a>
                                     </td>
                                     <td th:text="${#temporals.format(article.reg_date,'yyyy-MM-dd' )}"
-                                        class="py-2 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+                                        class="py-2 px-6 text-sm text-gray-500 whitespace-nowrap ">
                                         regDate
                                     </td>
                                     <td class="py-2 px-6 text-sm flex justify-center gap-2 items-center">

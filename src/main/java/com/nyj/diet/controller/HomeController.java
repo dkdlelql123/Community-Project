@@ -31,11 +31,11 @@ public class HomeController {
         List<ArticleListDTO> topTenArticle = articleList.subList(0, 10);
         model.addAttribute("articles", topTenArticle);
 
-        if(principal != null){
-            String memberId = principal.getName();
-            Member findMember = memberService.findByLoginId(memberId);
-            model.addAttribute("member", findMember );
-        }
+//        if(principal != null){
+//            String memberId = principal.getName();
+//            Member findMember = memberService.findByLoginId(memberId);
+//            model.addAttribute("member", findMember );
+//        }
 
         return "index";
     }
