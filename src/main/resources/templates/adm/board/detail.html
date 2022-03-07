@@ -25,11 +25,11 @@
 
             <form th:action="@{~/boards/} + ${board.id} + @{?page=} + ${currentPage}"
                   method="GET" class="p-4">
-                <div class="flex items-center">
+                <div class="flex items-center justify-center">
                     <input type="hidden" page="1" value="1">
 
                     <label for="table-search" class="sr-only">Search</label>
-                    <div class="relative mt-1">
+                    <div class="relative">
                         <div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
                             <svg class="w-5 h-5 text-gray-500 dark:text-gray-400"
                                  fill="currentColor" viewBox="0 0 20 20"
@@ -43,11 +43,11 @@
                                name="search"
                                th:value="${search}"
                                id="table-search"
-                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-l-lg focus:ring-blue-500 focus:border-blue-500 block w-80 pl-10 p-2.5 "
                                placeholder="Search for items"
                         >
                     </div>
-                    <button>go</button>
+                    <button class="bg-gray-500 text-white p-2 rounded-r-lg">search</button>
                 </div>
             </form>
 

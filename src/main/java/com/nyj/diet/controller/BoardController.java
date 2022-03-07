@@ -36,7 +36,7 @@ public class BoardController {
     @GetMapping("/boards/{id}")
     public String showBoardDetail(@PathVariable(name = "id") Long id, Model model, @RequestParam(name = "page", defaultValue = "1") int page, @RequestParam(name = "search", defaultValue = "") String search) {
 
-        int size = 5;
+        int size = 10;
 
         try {
             BoardDTO boardDetail = boardService.getBoardDetail(id);
