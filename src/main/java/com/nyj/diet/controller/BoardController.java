@@ -43,7 +43,7 @@ public class BoardController {
 
             List<ArticleListDTO> articleListDTO = boardDetail.getArticleListDTO();
             List<ArticleListDTO> store = new ArrayList<>();
-            
+
             for (ArticleListDTO listDTO : articleListDTO) {
                 if (listDTO.getTitle().contains(search)) store.add(listDTO);
             }
@@ -61,7 +61,8 @@ public class BoardController {
             if (page == lastPage) {
                 lastIndex = articleListDTO.size();
             } else if (page > lastPage) {
-                return "redirect:/";
+                lastIndex = 0;
+//                return "redirect:/";
             } else { //page < lastPage
                 lastIndex += 1; // subList를 사용할 때 9를 입력하면 8까지만 보여줌. 그래서 9를 보려면 10을 넣어줘야 한다.
             }
